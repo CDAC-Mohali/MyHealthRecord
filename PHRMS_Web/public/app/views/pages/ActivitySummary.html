@@ -1,0 +1,109 @@
+<div class="normalheader transition animated fadeIn">
+    <div class="hpanel hblue">
+        <div class="panel-body">
+
+            <h2 class="font-light m-b-xs">
+                Recent Activity Summary
+            </h2>
+            <div>
+                <small>
+                  This page summarizes the series of activities performed by you in PHRMS with the timestamp.
+                    <br><br>
+                                   </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content transition animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12 animated-panel fadeIn" style="animation-delay: 0.3s;">
+            <div class="hpanel hgreen">
+                <div class="panel-body float-e-margins">
+                    <div class="table-responsive">
+                        <div class="gj-grid-wrapper">
+                            <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                <thead>
+                                    <tr>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                            <div style="float: left">S.No.</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: left;">
+                                            <div style="float: left">Module</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 200px; text-align: center;">
+                                            <div style="float: left">Subject</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 50px;text-align: left;">
+                                            <div style="float: left">Timestamp</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                            <div style="float: left">Action</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                            <div style="float: left">Performed By</div>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                        <td colspan="7"><strong> No Activity Records Available </strong></td>
+                                    </tr>
+                                    <tr ng-repeat="AuditTrail in AuditTrailList | filter:searchUser:false">
+                                        <td style="text-align: left;">
+                                            {{$index + 1}}
+                                        </td>
+
+                                        <td style="text-align: left;">
+                                            <span ng-if="AuditTrail.Record.Module =='BP'">Blood Pressure</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'ePrescription'">Prescriptions</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Condition'">Problems</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'BloodGulucose'">Blood Glucose</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'MedicalContacts'">Contacts</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'BodyTemperature'">Body Temperature</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'HeartRate'">Heart Rate</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'RespiratoryRate'">Respiratory Rate</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Activity'">Activity</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'BMI'">BMI</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'SPo2'">SpO2</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'ShareData'">Share Records</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'ChangePicture'">Change Picture</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Procedure'">Procedure</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Lab'">Lab Tests</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Immunization'">Immunization</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Allergy'">Allergies</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Medication'">Medication</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'ChangePassword'">Change Password</span>
+                                            <span ng-if="AuditTrail.Record.Module == 'Profile'">Profile</span>
+
+
+
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{AuditTrail.Record.RecordName}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{AuditTrail.Record.strCreatedDate}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{AuditTrail.Record.Event}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{AuditTrail.Record.UserName}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

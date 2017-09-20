@@ -1,0 +1,1046 @@
+<div class="no-print">
+<style>
+    .item i {
+        max-width: 100%;
+        -moz-transition: all 0.7s;
+        -webkit-transition: all 0.7s;
+        transition: all 0.7s;
+    }
+
+    .item-calendar:hover i.fa-files-o {
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    .item-custom:hover i.fa-angellist {
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    .mycontent-left {
+        border-right: 1px dashed #333;
+    }
+</style>
+
+<div class="small-header">
+    <div class="hpanel">
+        <div class="panel-body">
+            <div id="hbreadcrumb" class="pull-right">
+                <ol class="hbreadcrumb breadcrumb">
+                    <li><a href="/dashboard">Dashboard</a></li>
+
+                    <li class="active">
+                        <span>Share </span>
+                    </li>
+                </ol>
+            </div>
+            <h2 style="padding-top: 5px;" class="font-light m-b-xs">
+                Share Records
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="content transition animated fadeIn">
+    <div class="row item">
+        <div class="col-md-12 item-calendar">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="text-center">
+                        <a href="/MedicalContacts" class="pull-right" style="color: #ff0000;">Add Contact</a>
+                        <h3>
+                            <i style="margin-right: 1%;" class="fa fa-files-o"></i> Share Medical Records
+                        </h3>
+                        <hr>
+                        <div style="border-right: 1px solid #eee; padding-left: 20px; padding-right: 90px;" class="col-md-5  col-md-offset-1">
+                            <span style="font-size: 15px;"><label>Step 1: </label> Share With</span>
+                            <div class="row" style="padding-top: 12px;">
+                                <div class="col-lg-12" ng-click="ContactType = 'Medical'">
+                                    <div class="col-lg-2">
+                                        <input type="radio" name="type" ng-model="ContactType" value="Medical" class="input-sm" />
+                                    </div>
+                                    <div style="margin-top: 10px;" class="col-lg-10 text-align">
+                                        <label>Medical Contacts</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" ng-click="ContactType = 'Personal'">
+                                    <div class="col-lg-2">
+                                        <input type="radio" name="type" ng-model="ContactType" value="Personal" class="input-sm" />
+                                    </div>
+                                    <div style="margin-top: 10px;" class="col-lg-10">
+                                        <label style="padding-left: 6px;">Friends/Family Contacts</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="MedicalList">
+                                <div class="col-lg-2">
+                                </div>
+                                <div class="col-lg-10">
+
+                                    <input type="hidden" ng-model="shared.UserId" value="{{u_id}}" class="input-sm form-control" />
+                                    <select ng-model="Detail" class="input-sm form-control">
+                                    <option value="">---Choose One---</option>
+                                    <option ng-repeat="contact in UserContacts" value="{{contact._id}}">{{contact.Name}}</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="PersonalList">
+                                <div class="col-lg-2">
+                                </div>
+                                <div class="col-lg-10">
+
+                                    <input type="hidden" ng-model="shared.UserId" value="{{u_id}}" class="input-sm form-control" />
+                                    <select ng-model="Detail" class="input-sm form-control">
+                                    <option value="">---Choose One---</option>
+                                    <option ng-repeat="contact in UserPersonalContacts" value="{{contact._id}}">{{contact.Name}}</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="DisplaySelection">
+                            <div class="col-md-5" style="padding-left: 55px;">
+                                <span style="font-size: 15px;"><label>Step 2: </label> Select Record Type</span>
+                                <div class="row" style="padding-top: 12px;">
+                                    <div class="col-lg-12" ng-click="SelectionType = '0'">
+                                        <div class="col-lg-1">
+                                            <input type="radio" name="Stype" ng-model="SelectionType" value="0" class="input-sm" />
+                                        </div>
+                                        <div style="margin-top: 10px;" class="col-lg-5">
+                                            <label style="padding-left: 15px;">Record Based</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12" ng-click="SelectionType = '1'">
+                                        <div class="col-lg-1">
+                                            <input type="radio" name="Stype" ng-model="SelectionType" value="1" class="input-sm" />
+                                        </div>
+                                        <div style="margin-top: 10px;" class="col-lg-5">
+                                            <label>Date Based</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-show="DisplayDate">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" placeholder="Start Date" ng-model="dateData.From" class="input-sm form-control" />
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" placeholder="End Date" ng-model="dateData.To" class="input-sm form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-center" ng-show="DisplayArena">
+                        <hr />
+                        <span style="font-size: 15px;"><label>Step 3: </label> Select Records</span>
+                        <div class="row" style="padding-top: 12px;">
+                            <div class="col-lg-2" ng-show="enableAllergy">
+                                <button class="btn btn-primary btn-block" ng-click="selectAllergy()">Allergy(s)</button>
+                                <!-- <button class="btn btn-primary  btn-block" ng-switch-when='false' ng-click="unselectAllergy()">Allergy(s)</button> -->
+                            </div>
+                            <div class="col-lg-2" ng-show="enableImmunization">
+                                <button class="btn btn-primary btn-block" ng-click="selectImmunization()">Immunization(s)</button>
+                            </div>
+                            <div class="col-lg-2" ng-show="enableProblem">
+                                <button class="btn btn-primary btn-block" ng-click="selectProblem()">Problem(s)</button>
+                            </div>
+                            <div class="col-lg-2" ng-show="enableLab">
+                                <button class="btn btn-primary btn-block" id="btnLab" ng-click="selectLab()">Lab Test(s)</button>
+                            </div>
+                            <div class="col-lg-2" ng-show="enableProcedure">
+                                <button class="btn btn-primary btn-block" id="btnProcedure" ng-click="selectProcedure()">Procedure(s) </button>
+                            </div>
+                            <div class="col-lg-2" ng-show="enableMedicine">
+                                <button class="btn btn-primary btn-block" id="btnMedicine" ng-click="selectMedicine()">Medication(s) </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Table !-->
+                    <div class="row item" ng-show="DisplayArena">
+                        <div class="col-md-12 item-calendar">
+                            <div class="hpanel">
+                                <div>
+                                    <div class="text-center">
+
+                                        <hr />
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li ng-show="enableAllergy">
+                                            <a data-toggle="tab" data-target="#allergy" id="allergytab"  > <span class="fa fa-pagelines"></span> Allergy(s) <span style="margin-left: 6px;" class="badge">{{AllergyCount}}</span></a>
+                                        </li>
+                                        <li ng-show="enableImmunization" ><a data-toggle="tab" data-target="#immunization" id="immunizationtab"><span class="fa fa-eyedropper"></span> Immunization(s) <span style="margin-left: 6px;" class="badge">{{ImmunizationCount}}</span></a></li>
+                                        <li ng-show="enableProblem"><a data-toggle="tab" data-target="#problem" id="problemtab"><span class="fa fa-stethoscope"></span> Problem(s) <span style="margin-left: 6px;" class="badge">{{ConditionCount}}</span></a></li>
+                                        <li ng-show="enableLab" ><a data-toggle="tab" data-target="#lab" id="labtab"><span class="pull-left fa fa-flask"></span> Lab(s) <span style="margin-left: 6px;" class="badge">{{LabCount}}</span></a></li>
+                                        <li ng-show="enableProcedure"><a data-toggle="tab" data-target="#procedure" id="proceduretab"><span class="pull-left fa fa-scissors"></span> Procedure(s) <span style="margin-left: 6px;" class="badge">{{ProcedureCount}}</span></a></li>
+                                        <li ng-show="enableMedicine" ><a data-toggle="tab" data-target="#medicine" id="medicinetab"><span class="pull-left fa fa-plus-square"></span> Medication(s) <span style="margin-left: 6px;" class="badge">{{MedicineCount}}</span></a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="allergy" class="tab-pane">
+                                            <div class="panel-body" style="border-color: #31708f!important">
+                                                <div class="table-responsive">
+                                                    <table class="footable table table-bordered table-hover gj-grid-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">S.No.</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                                    <div style="float: left">Entered By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                                    <div style="float: left">Allergy Name</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">From</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Still Have Allergy?</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                                    <div style="float: left"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                                                <td colspan="7"><strong> No Allergy Records Available </strong></td>
+                                                            </tr>
+                                                            <tr ng-repeat="UserAllergy in shared.Allergy | filter:searchUser:false">
+                                                                <td style="text-align: left;">
+                                                                    {{$index + 1}}
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <span class="fa fa-user fa-lg"></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserAllergy.Allergy.AllergyName}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserAllergy.Since}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserAllergy.StillHave}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <a href="#" ng-click="deleteAllergy(UserAllergy)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="immunization" class="tab-pane">
+                                            <div class="panel-body" style="border-color: #31708f!important">
+                                                <div class="table-responsive">
+                                                    <table class="footable table table-bordered table-hover gj-grid-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">S.No.</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                                    <div style="float: left">Added By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                                    <div style="float: left">Immunization Name</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                                    <div style="float: left">Taken On</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                                    <div style="float: left"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                                                <td colspan="7"><strong> No Immunization Records Available </strong></td>
+                                                            </tr>
+                                                            <tr ng-repeat="UserImmunization in shared.Immunization | filter:searchUser:false">
+                                                                <td style="text-align: left;">
+                                                                    {{$index + 1}}
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <span class="fa fa-user fa-lg"></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserImmunization.Immunization.ImmunizationName}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserImmunization.strTakenOn}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <a href="#" ng-click="deleteImmunization(UserImmunization)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="problem" class="tab-pane">
+                                            <div class="panel-body" style="border-color: #31708f!important">
+                                                <div class="table-responsive">
+                                                    <table class="footable table table-bordered table-hover gj-grid-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">S.No.</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                                    <div style="float: left">Entered By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                                    <div style="float: left">Diagnosis Name</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Diagnosis Date</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Still Have Problem?</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                                    <div style="float: left"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="UserCondition in shared.Condition | filter:searchUser:false">
+                                                                <td style="text-align: left;">
+                                                                    {{$index + 1}}
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <span class="fa fa-user fa-lg"></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserCondition.Condition.HealthCondition}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserCondition.strDiagnosisDate}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserCondition.StillHave}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <a href="#" ng-click="deleteProblem(UserCondition)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="lab" class="tab-pane">
+                                            <div class="panel-body" style="border-color: #31708f!important">
+                                                <div class="table-responsive">
+                                                    <table class="footable table table-bordered table-hover gj-grid-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">S.No.</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                                    <div style="float: left">Entered By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width:100px; text-align: left;">
+                                                                    <div style="float: left">Performed On</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Test Name</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 150px; text-align: left;">
+                                                                    <div style="float: left">Result</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                                                    <div style="float: left">Unit</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                                    <div style="float: left"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="UserLab in shared.Lab | filter:searchUser:false">
+                                                                <td style="text-align: left;">
+                                                                    {{$index + 1}}
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <span class="fa fa-user fa-lg"></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserLab.strPerformedOn}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserLab.Lab.TestName}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserLab.Result}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserLab.Unit}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <a href="#" ng-click="deleteLab(UserLab)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="procedure" class="tab-pane">
+                                            <div class="panel-body" style="border-color: #31708f!important">
+                                                <div class="table-responsive">
+                                                    <table class="footable table table-bordered table-hover gj-grid-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">S.No.</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                                    <div style="float: left">Entered By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                                    <div style="float: left">Procedure Name</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Performed By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Performed On</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                                    <div style="float: left"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="UserProcedure in shared.Procedure | filter:searchUser:false">
+                                                                <td style="text-align: left;">
+                                                                    {{$index + 1}}
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <span class="fa fa-user fa-lg"></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserProcedure.Procedure.ProcedureName}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserProcedure.DoctorHospital}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserProcedure.strDateofProcedure}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <a href="#" ng-click="deleteProcedure(UserProcedure)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="medicine" class="tab-pane">
+                                            <div class="panel-body" style="border-color: #31708f!important">
+                                                <div class="table-responsive">
+                                                    <table class="footable table table-bordered table-hover gj-grid-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">S.No.</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 25px; text-align: center;">
+                                                                    <div style="float: left">Entered By</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 50px; text-align: left;">
+                                                                    <div style="float: left">Prescribed Date</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                                    <div style="float: left">Medicine Name</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                                                    <div style="float: left">Still Taking?</div>
+                                                                </th>
+                                                                <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                                    <div style="float: left"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="UserMedication in shared.Medication | filter:searchUser:false">
+                                                                <td style="text-align: left;">
+                                                                    {{$index + 1}}
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <span class="fa fa-user fa-lg"></span>
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserMedication.strDatePrescribed}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserMedication.Medicine.MedicineName}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    {{UserMedication.StillHave}}
+                                                                </td>
+                                                                <td style="text-align: left;">
+                                                                    <a href="#" ng-click="deleteMedicine(UserMedication)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-center" ng-show="DisplayArena">
+                        <hr/>
+                        <span style="font-size: 15px;"><label>Step 4: </label> Ask your Query</span>
+                        <div class="row" style="padding-top: 12px;">
+
+                            <div class="row text-center">
+                                <div style="margin-top: 30px;" class="col-md-6 col-md-offset-3">
+                                    <label>{{Label}}</label>
+                                    <textarea rows="5" ng-model="shared.UserMessage.Message" id="Message" class="form-control" placeholder="Enter Text Here"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-md-offset-3" style="padding-top: 30px; display: block;">
+                                <label>Validity</label>
+                                <div class="row">
+                                    <radio-slider ng-if="DisplayArena" values="vm.values" ng-model="shared.Validity"></radio-slider>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div style="margin-top: 10px;" class="col-md-2 col-md-offset-5">
+                                    <button class="btn btn-info btn-block" ng-click="shareData()">Send</button>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Date Table !-->
+
+</div>
+
+<!-- Allergy Modal -->
+<div class="modal fade" id="allergyModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Allergy Selections</h4>
+                <small class="font-bold">Please Select Records to Share From Below</small>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <div class="gj-grid-wrapper">
+                        <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                        <div style="float: left">S.No.</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                        <div style="float: left">Entered By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                        <div style="float: left">Allergy Name</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">From</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Still Have Allergy?</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                        <input ng-model='selectedAllergy' ng-init='selectedAllergy=false' type="checkbox" id="ckAllergy" ng-click="checkAllAllergy(selectedAllergy,UserAllergies)"
+                                        />
+                                        <div style="float: left"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="emptyAllergyList" class="text-center" style="background-color: ghostwhite;">
+                                    <td colspan="6"><strong> No Further Allergy Records Available </strong></td>
+                                </tr>
+
+                                <tr ng-repeat="UserAllergy in UserAllergies | filter:searchUser:false">
+                                    <td style="text-align: left;" ng-click="Selectchk(UserAllergy,1)">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td style="text-align: center;" ng-click="Selectchk(UserAllergy,1)">
+                                        <span class="fa fa-user fa-lg"></span>
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserAllergy,1)">
+                                        {{UserAllergy.Allergy.AllergyName}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserAllergy,1)">
+                                        {{UserAllergy.Since}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserAllergy,1)">
+                                        {{UserAllergy.StillHave}}
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <input id="{{UserAllergy._id}}" ng-init='checkStatus=false' ng-model='checkStatus' ng-click='TempmanageAllergy(checkStatus, UserAllergy)'
+                                            class="ckAll" type="checkbox" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="CancelAllergy()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="submitAllergy()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Immunization Modal -->
+<div class="modal fade" id="immunizationModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Immunization Selections</h4>
+                <small class="font-bold">Please Select Records to Share From Below</small>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <div class="gj-grid-wrapper">
+                        <table class="footable table table-bordered table-hover gj-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                        <div style="float: left">S.No.</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                        <div style="float: left">Added By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                        <div style="float: left">Immunization Name</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                        <div style="float: left">Taken On</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                        <input ng-model='selectedAll' ng-init='selectedAll=false' type="checkbox" id="ckImmunization" ng-click="checkAllImmunization(selectedAll,UserImmunizations)"
+                                        />
+                                        <div style="float: left"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="emptyImmunizationList" class="text-center" style="background-color: ghostwhite;">
+                                    <td colspan="5"><strong> No Further Immunization Records Available </strong></td>
+                                </tr>
+                                <tr ng-repeat="UserImmunization in UserImmunizations | filter:searchUser:false">
+                                    <td style="text-align: left;" ng-click="Selectchk(UserImmunization,2)">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td style="text-align: center;" ng-click="Selectchk(UserImmunization,2)">
+                                        <span class="fa fa-user fa-lg"></span>
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserImmunization,2)">
+                                        {{UserImmunization.Immunization.ImmunizationName}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserImmunization,2)">
+                                        {{UserImmunization.strTakenOn}}
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <input ng-init='checkStatus=false' id="{{UserImmunization._id}}" ng-model='checkStatus' ng-click='TempmanageImmunization(checkStatus, UserImmunization)'
+                                            type="checkbox" class="ckImm" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="CancelImmunization()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="submitImmunization()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Condition Modal -->
+<div class="modal fade" id="conditionModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Problem Selections</h4>
+                <small class="font-bold">Please Select Records to Share From Below</small>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <div class="gj-grid-wrapper">
+                        <table class="footable table table-bordered table-hover gj-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                        <div style="float: left">S.No.</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                        <div style="float: left">Entered By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                        <div style="float: left">Diagnosis Name</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Diagnosis Date</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Still Have Problem?</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                        <input ng-model='selectedProblem' ng-init='selectedProblem=false' type="checkbox" id="ckProblem" ng-click="checkAllProblem(selectedProblem,UserConditions)"
+                                        />
+                                        <div style="float: left"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="emptyConditionList" class="text-center" style="background-color: ghostwhite;">
+                                    <td colspan="6"><strong> No Further Problem Records Available </strong></td>
+                                </tr>
+                                <tr ng-repeat="UserCondition in UserConditions | filter:searchUser:false">
+                                    <td style="text-align: left;" ng-click="Selectchk(UserCondition,3)">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td style="text-align: center;" ng-click="Selectchk(UserCondition,3)">
+                                        <span class="fa fa-user fa-lg"></span>
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserCondition,3)">
+                                        {{UserCondition.Condition.HealthCondition}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserCondition,3)">
+                                        {{UserCondition.strDiagnosisDate}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserCondition,3)">
+                                        {{UserCondition.StillHave}}
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <input id="{{UserCondition._id}}" ng-init='checkStatus=false' ng-model='checkStatus' ng-click='TempmanageProblem(checkStatus, UserCondition)'
+                                            type="checkbox" class="ckProb" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="CancelProblem()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="submitProblem()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lab Modal -->
+<div class="modal fade" id="labModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Lab Selections</h4>
+                <small class="font-bold">Please Select Records to Share From Below</small>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <div class="gj-grid-wrapper">
+                        <table class="footable table table-bordered table-hover gj-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                        <div style="float: left">S.No.</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                        <div style="float: left">Entered By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width:100px; text-align: left;">
+                                        <div style="float: left">Performed On</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Test Name</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 150px; text-align: left;">
+                                        <div style="float: left">Result</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                        <div style="float: left">Unit</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                        <div style="float: left"> <input ng-model='selectedLab' ng-init='selectedLab=false' type="checkbox" id="ckLabTest"
+                                                ng-click="checkAllLabTests(selectedLab,UserLabs)" /></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="emptyLabList" class="text-center" style="background-color: ghostwhite;">
+                                    <td colspan="7"><strong> No Further Lab Records Available </strong></td>
+                                </tr>
+                                <tr ng-repeat="UserLab in UserLabs | filter:searchUser:false">
+                                    <td style="text-align: left;" ng-click="Selectchk(UserLab,4)">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td style="text-align: center;" ng-click="Selectchk(UserLab,4)">
+                                        <span class="fa fa-user fa-lg"></span>
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserLab,4)">
+                                        {{UserLab.strPerformedOn}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserLab,4)">
+                                        {{UserLab.Lab.TestName}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserLab,4)">
+                                        {{UserLab.Result}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserLab,4)">
+                                        {{UserLab.Unit}}
+                                    </td>
+                                    <td style="text-align: left;" >
+                                        <input id="{{UserLab._id}}" ng-init='checkStatus=false' ng-model='checkStatus' ng-click='TempmanageLab(checkStatus, UserLab)'
+                                            type="checkbox" class="ckLab" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="CancelLab()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="submitLab()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Procedure Modal -->
+<div class="modal fade" id="procedureModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Procedure Selections</h4>
+                <small class="font-bold">Please Select Records to Share From Below</small>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <div class="gj-grid-wrapper">
+                        <table class="footable table table-bordered table-hover gj-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                        <div style="float: left">S.No.</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                        <div style="float: left">Entered By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                        <div style="float: left">Procedure Name</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Performed By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Performed On</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                        <input ng-model='selectedProcedure' ng-init='selectedProcedure=false' type="checkbox" id="ckProcedure" ng-click="checkAllProcedures(selectedProcedure,UserProcedures)"
+                                        />
+                                        <div style="float: left"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="emptyProcedureList" class="text-center" style="background-color: ghostwhite;">
+                                    <td colspan="6"><strong> No Further Procedure Records Available </strong></td>
+                                </tr>
+                                <tr ng-repeat="UserProcedure in UserProcedures | filter:searchUser:false">
+                                    <td style="text-align: left;" ng-click="Selectchk(UserProcedure,5)">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td style="text-align: center;" ng-click="Selectchk(UserProcedure,5)">
+                                        <span class="fa fa-user fa-lg"></span>
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserProcedure,5)">
+                                        {{UserProcedure.Procedure.ProcedureName}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserProcedure,5)">
+                                        {{UserProcedure.DoctorHospital}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserProcedure,5)">
+                                        {{UserProcedure.strDateofProcedure}}
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <input id="{{UserProcedure._id}}" ng-init='checkStatus=false' ng-model='checkStatus' ng-click='TempmanageProcedure(checkStatus, UserProcedure)'
+                                            type="checkbox" class="ckProc" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="CancelProcedure()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="submitProcedure()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Medicine Modal -->
+<div class="modal fade" id="medicineModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Medicine Selections</h4>
+                <small class="font-bold">Please Select Records to Share From Below</small>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <div class="gj-grid-wrapper">
+                        <table class="footable table table-bordered table-hover gj-grid-table">
+                            <thead>
+                                <tr>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                        <div style="float: left">S.No.</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 25px; text-align: center;">
+                                        <div style="float: left">Entered By</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 50px; text-align: left;">
+                                        <div style="float: left">Prescribed Date</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                        <div style="float: left">Medicine Name</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                        <div style="float: left">Still Taking?</div>
+                                    </th>
+                                    <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                        <input ng-model='selectedMedicine' ng-init='selectedMedicine=false' type="checkbox" id="ckMedicine" ng-click="checkAllMedicine(selectedMedicine,UserMedications)"
+                                        />
+                                        <div style="float: left"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="emptyMedicineList" class="text-center" style="background-color: ghostwhite;">
+                                    <td colspan="6"><strong> No Further Medication Records Available </strong></td>
+                                </tr>
+                                <tr ng-repeat="UserMedication in UserMedications | filter:searchUser:false">
+                                    <td style="text-align: left;" ng-click="Selectchk(UserMedication,6)">
+                                        {{$index + 1}}
+                                    </td>
+                                    <td style="text-align: center;" ng-click="Selectchk(UserMedication,6)">
+                                        <span class="fa fa-user fa-lg"></span>
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserMedication,6)">
+                                        {{UserMedication.strDatePrescribed}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserMedication,6)">
+                                        {{UserMedication.Medicine.MedicineName}}
+                                    </td>
+                                    <td style="text-align: left;" ng-click="Selectchk(UserMedication,6)">
+                                        {{UserMedication.StillHave}}
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <input id="{{UserMedication._id}}" ng-init='checkStatus=false' ng-model='checkStatus' ng-click='TempmanageMedicine(checkStatus, UserMedication)'
+                                            type="checkbox" class="ckMed" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="CancelMedicine()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="submitMedicine()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

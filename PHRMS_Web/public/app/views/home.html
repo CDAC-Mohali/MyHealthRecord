@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Page title -->
+<title>PHRMS | A C-DAC Product</title>
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+<!-- Vendor styles -->
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/font-awesome.css" />
+<link rel="stylesheet" href="assets/vendor/metisMenu/dist/metisMenu.css" />
+<link rel="stylesheet" href="assets/vendor/animate.css/animate.css" />
+<link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.css" />
+
+<!-- App styles -->
+<link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/helper.css" />
+<link rel="stylesheet" href="assets/styles/style.css">
+
+<!-- Angular Scripts -->
+<script src="assets/vendor/angular/angular.min.js"></script>
+<script src="assets/vendor/angular/angular-route.min.js"></script>
+<script src="assets/vendor/angular/angular-animate.min.js"></script>
+
+<!-- Angular Logic -->
+<script src="app/loginApp.js"></script>
+<script src="app/controllers/userCtrl.js"></script>
+<script src="app/services/userServices.js"></script>
+<script src="app/services/authServices.js"></script>
+<style type="text/css" media="print">
+    BODY {
+        display: none;
+        visibility: hidden;
+    }
+</style>
+
+<head>
+    <style type="text/css">
+        .phrmsrimg {
+            margin-top: -60px;
+            margin-left: 45px;
+        }
+        
+        .bgsignup_phrms {
+            background-color: #337AB7;
+            color: #FFF;
+        }
+        
+        .righthalf {
+            margin-top: -28px;
+        }
+        
+        .hvr-grow {
+            display: inline-block;
+            vertical-align: middle;
+            transform: translateZ(0);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+            backface-visibility: hidden;
+            -moz-osx-font-smoothing: grayscale;
+            transition-duration: 0.3s;
+            transition-property: transform;
+        }
+        
+        .baseline {
+            width: 1024px;
+            margin: auto;
+        }
+        
+        .left20 {
+            padding-left: 20px;
+        }
+        
+        .sliderhght {
+            min-height: 500px !important;
+        }
+        
+        .top {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .logorow {
+            background-color: #F0F8FF;
+            padding-top: 50px;
+        }
+        
+        .no-padding {
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+        
+        .hdrbgclr {
+            background-color: #fff !important;
+            border-radius: 0px !important;
+            margin-bottom: 0px !important;
+        }
+        
+        .rightnav {
+            padding: 5px;
+        }
+        
+        .lirghtup {
+            margin-right: 8px;
+        }
+        
+        .bot5 {
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width:767px) {
+            .baseline {
+                width: 100%;
+            }
+            .rightnav {
+                text-align: center;
+            }
+            .lirghtup {
+                margin-top: 3px;
+            }
+            .drplist {
+                text-align: center;
+            }
+        }
+        
+        .whitebg {
+            background-color: #fff;
+            padding: 10px 0;
+        }
+        
+        .iconbdr {
+            border: 1px solid #09F;
+            font-size: 35px;
+            padding: 10px;
+            color: #09F;
+        }
+        
+        .iconbdrupload {
+            border: 1px solid #0099ff;
+            font-size: 35px;
+            padding: 10px;
+            color: #0099ff;
+        }
+        
+        .pnlicon {
+            border: 1px solid #000;
+            font-size: 35px;
+            padding: 10px;
+            color: #fff;
+            background-color: #FFA87D;
+            margin-top: 15px;
+        }
+        
+        .pnliconbdr {
+            border: 2px solid #000;
+            border-radius: 50%;
+            padding: 25px;
+            font-size: 34px;
+            background-color: #fff;
+        }
+        
+        .pnltxt {
+            margin-top: 20px;
+        }
+        
+        .filesize {
+            font-size: 45px;
+        }
+        
+        .panelsrow {
+            background-color: #F0F8FF;
+            padding-top: 40px;
+            padding-bottom: 15px;
+        }
+        
+        .nobdr {
+            border: none;
+        }
+        
+        .lghtblu {
+            background-color: #D9ECFF;
+        }
+        
+        .links {
+            color: #000
+        }
+        
+        .bulleted {
+            padding-left: 10px;
+        }
+        
+        .bulleted li {
+            padding-bottom: 2px;
+        }
+        
+        .newslink {
+            color: #C30;
+            font-size: 13px;
+        }
+        
+        .bulleted li a:hover {
+            text-decoration: none;
+        }
+        
+        .bgsignup {
+            background-color: #4776C6;
+            color: #fff;
+        }
+        /*.zeroone{background-image:url(../img/zeroone.jpg); background-repeat:no-repeat;}*/
+        
+        .dwn {
+            padding-top: 27px;
+        }
+        
+        .ovalbtn {
+            border-radius: 17px;
+            margin-left: 15px;
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .ovalbtn1 {
+            border-radius: 17px;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .bgfooter {
+            background-color: #192B39;
+        }
+        /* #444 */
+        
+        .ftrlists {
+            display: inline-flex;
+            color: #fff;
+            list-style: none;
+        }
+        
+        @media (max-width:503px) {
+            .ftrlists {
+                margin-left: -48px;
+                color: #444444;
+                display: block;
+            }
+            .adjust {
+                margin-left: 199px !important;
+                margin-top: -100px;
+            }
+        }
+        
+        @media (min-width:768px) {
+            .ftrlists {
+                margin-left: -30px;
+            }
+        }
+        
+        .ftrgap {
+            padding: 25px 0;
+        }
+        
+        .adjust {
+            margin-left: 27px;
+        }
+        
+        .logogap {
+            margin-top: 5px;
+        }
+        
+        .hlptxt {
+            margin-top: 6px;
+        }
+        
+        .dgindiadwn {
+            margin-top: 4px;
+        }
+        
+        .rght {
+            margin-right: -6px;
+        }
+        
+        @media(max-width:485px) {
+            .dglckrlogo {
+                margin-top: 0px;
+            }
+        }
+        
+        .navbar-nav>li>a {
+            padding: 0px;
+        }
+        
+        @media (max-width:332px) {
+            .logorow {
+                background-color: #F0F8FF;
+                padding-top: 52px;
+            }
+            .navbar-header span {
+                font-size: 9px;
+            }
+        }
+        
+        .whitetext {
+            color: #fff !important;
+        }
+        
+        .adhrimg {
+            border: 1px solid #69F;
+            padding: 10px;
+            display: inline-block;
+        }
+        
+        .dglckrlogo {
+            margin-left: -31px !important;
+            padding-bottom: 11px;
+            padding-top: 10px;
+            width: 43%;
+        }
+        
+        @media (min-width:768px) and (max-width:980px) {
+            .adhrblckposition {
+                margin-left: -37px;
+            }
+            .baseline {
+                width: 100%;
+            }
+        }
+        
+        @media (min-width:992px) {
+            .pnlhght {
+                height: 280px;
+            }
+        }
+        
+        @media (max-width:837px) {
+            .tabcntr {
+                text-align: center;
+            }
+            .notintab {
+                display: none;
+            }
+        }
+        
+        .hvr-grow {
+            display: inline-block;
+            vertical-align: middle;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+        }
+        
+        .hvr-grow:hover,
+        .hvr-grow:focus,
+        .hvr-grow:active {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        
+        body {
+            text-decoration: none;
+            font-family: 'Open Sans', Frutiger, Calibri, 'Myriad Pro', Myriad, sans-serif;
+            font-size: 1.5em;
+            font-weight: 400;
+            color: rgb(0, 0, 0);
+            line-height: 1.4em;
+        }
+        
+        .hvrblck:hover {
+            color: #000;
+        }
+        /*header responsive css starts*/
+        
+        @media(max-width:767px) {
+            .btnsintab {
+                display: flex;
+                margin-top: -30px;
+            }
+        }
+        
+        @media(max-width:400px) {
+            .logoinmobile {
+                display: none;
+            }
+        }
+        
+        @media(max-width:767px) {
+            .hdrmobile {
+                display: none;
+            }
+        }
+        
+        @media(min-width:767px) {
+            .logoinmobile {
+                display: none;
+            }
+        }
+        
+        @media(max-width:767px) {
+            .open {
+                margin-left: -57px;
+            }
+        }
+        
+        .headerhght {
+            height: 60px;
+        }
+        
+        .lionimg {
+            margin-top: 2px;
+            border-right: 1px solid #ccc;
+            padding-right: 4px;
+        }
+        
+        .dglckrimg {
+            margin-top: -79px;
+            margin-left: 20px
+        }
+        
+        .dgindiaimg {
+            margin-top: -79px;
+        }
+        
+        .hdrshadow {
+            box-shadow: 0 1px 5px #ccc;
+        }
+        
+        .hdrbgclr {
+            background-color: #fff;
+        }
+        
+        .hdrnavcustom {
+            background-color: #fff;
+            margin-top: -20px;
+            margin-right: -43px;
+            float: right;
+        }
+        
+        .dgindiafullimg {
+            padding-right: 5px;
+            border-right: 1px solid #ccc;
+        }
+        
+        .lipad {
+            padding-top: 8px;
+        }
+        
+        .limargin {
+            margin-top: 22px;
+        }
+        
+        .txt4help {
+            margin-top: 28px !important;
+            cursor: pointer;
+        }
+        
+        .drpdwncustom {
+            margin-top: -5px;
+            font-size: 12px;
+            font-family: inherit;
+        }
+        
+        .righthalf {
+            margin-top: -4px;
+        }
+        /*header responsive css ends*/
+        /*banner text style starts*/
+        
+        .carousel-caption {
+            bottom: 20px;
+            color: #ffffff;
+            left: 0 !important;
+            right: 0 !important;
+            padding-bottom: 25px;
+            padding-top: 0px;
+            text-align: center !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.25) none repeat scroll 0 0;
+            bottom: 0px;
+            position: absolute;
+            width: 100%;
+            z-index: 0;
+            padding-left: 15px;
+        }
+        
+        .lesspad {
+            margin-top: 5px !important;
+            margin-bottom: -8px !important;
+        }
+        
+        .circlelists {
+            margin-bottom: -15px;
+        }
+        
+        .shadowtxt {
+            padding: 2px;
+        }
+        
+        .ovalbtn1 {
+            margin-bottom: 5px;
+        }
+        /*banner text style ends*/
+        
+        @media(max-width:767px) {
+            .bnrhght {
+                margin-top: 49px;
+            }
+            .h1txt {
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .h4txt {
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+        
+        @media(min-width:768px) {
+            .dwn {
+                padding-left: 320px !important;
+            }
+        }
+        
+        @media(max-width:480px) {
+            .left20 {
+                padding-left: 0px;
+            }
+            .notyet {
+                padding: 10px 5px;
+            }
+        }
+        
+        @media(max-width:640px) {
+            .lfttxtlgnin {
+                font-size: 16px;
+            }
+            .left30 {
+                padding-left: 0px;
+                padding-right: 0px;
+                margin: 5px;
+            }
+            .col-xs-12 {
+                border: none;
+            }
+            .bluetxt {
+                margin-left: 0px;
+            }
+            .mblcntr {
+                margin: 5px;
+                padding: 0px;
+            }
+            .login-width70,
+            .right5 {
+                width: 100%;
+            }
+            .bgfooter {
+                margin-top: 0px !important;
+                padding: 0px;
+            }
+            .ftrlists {
+                display: flex !important;
+                list-style: none !important;
+                text-align: center !important;
+            }
+            .ftrgap {
+                padding: 5px;
+                font-size: 13px;
+            }
+            div#maindiv {
+                padding-bottom: 0px;
+            }
+            .ftrgap p {
+                font-size: 11px;
+                padding-right: 0px !important;
+            }
+        }
+        
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-top: 10px;
+            border: none;
+            margin-bottom: 0px;
+            cursor: pointer;
+        }
+        
+        select:focus {
+            outline: 0 !important;
+        }
+        
+        select option {
+            padding-top: 0px;
+        }
+        
+        @media(max-width:767px) {
+            select {
+                margin-top: 17px;
+            }
+        }
+        
+        .navbar-default .navbar-collapse,
+        .navbar-default .navbar-form {
+            border-color: transparent;
+        }
+        
+        @media(max-width:400px) {
+            .zeropadmbl {
+                padding: 0px;
+            }
+        }
+        
+        .css-select {
+            background-image: url(/assets/img/br_down.png);
+            background-repeat: no-repeat;
+            background-position: right center;
+            padding-right: 10px;
+            color: blue;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="no-padding headerhght">
+        <nav class="navbar navbar-default navbar-fixed-top hdrshadow">
+            <div class="container-fluid no-padding hdrbgclr">
+                <div class="col-md-12 col-sm-12 headerhght">
+                    <div class="col-md-5 col-sm-5 zeropadmbl">
+                        <img src="assets/images/myHealthRecordlogo.png" class="img-responsive " width="42" />
+
+                        <img src="assets/images/MyHealthRecord.png" class="img-responsive phrmsrimg" />
+                    </div>
+                    <div class="col-md-7 col-sm-7 righthalf" style="margin-top: -5px;">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="navbar-header hdrnavcustom">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav"></ul>
+                                <ul class="nav navbar-nav navbar-right tabcntr btnsintab" style="display: flex">
+                                    <li class="lirghtup lipad">
+                                        <img src="assets/images/nationalemblemindia.png" class="img-responsive lionimg" width="42">
+                                    </li>
+
+                                    <li class="lirghtup lipad">
+                                        <a href="http://www.digitalindia.gov.in/"><img src="assets/images/digital_india_logo.png" class="img-responsive hdrmobile dgindiafullimg" width="102"></a>
+                                    </li>
+                                    <li class="lirghtup limargin">
+                                        <a href="/login">
+                                            <button class="btn btn-success btn-xs">Sign In</button>
+                                        </a>
+                                    </li>
+                                    <li class="lirghtup limargin">
+                                        <a href="/aadhaarRegistration">
+                                            <button class="btn btn-primary btn-xs">Sign Up with Aadhar</button>
+                                        </a>
+                                    </li>
+                                    <li class="lirghtup limargin">
+                                        <a href="/register">
+                                            <button class="btn btn-primary btn-xs">Sign Up</button>
+                                        </a>
+                                    </li>
+                                    <li class="lirghtup limargin">
+                                        <a href="http://testcpms.myhealthrecord.nhp.gov.in/login">
+                                            <button class="btn btn-warning btn-xs">Doctor Login</button>
+                                        </a>
+                                    </li>
+                                    <!--<select class="css-select" name="language" id="language" style="height: 18px; margin-top: 25px; font-size: 13px;">
+                                        <option value="english">English</option>
+                                        <option value="hindi">हिन्दी</option>
+                                    </select>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid no-padding">
+        <div id="myCarousel" class="carousel slide bnrhght" data-ride="carousel">
+            <ol class="carousel-indicators circlelists">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li class="" data-target="#myCarousel" data-slide-to="1"></li>
+                <li class="" data-target="#myCarousel" data-slide-to="2"></li>
+                <li class="" data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="assets/images/pic4.jpg" alt="ONLINE APPLICATIONS" class="img-responsive" style="width: 100%; margin: auto" />
+                    <div class="carousel-caption">
+                        <h1 class="lesspad shadowtxt h1txt">Health Management</h1>
+                        <h4 class="shadowtxt h4txt">Organize your family's health information</h4>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/images/pic4.jpg" alt="ONLINE APPLICATIONS" class="img-responsive" style="width: 100%; margin: auto" />
+                    <div class="carousel-caption">
+                        <h1 class="lesspad shadowtxt h1txt">Health Management</h1>
+                        <h4 class="shadowtxt h4txt">Organize your family's health information</h4>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/images/pic22.jpg" alt="PAPERLESS GOVERNANCE" class="img-responsive" style="width: 100%; margin: auto;">
+                    <div class="carousel-caption">
+                        <h1 class="lesspad shadowtxt h1txt">Manage Visits</h1>
+                        <h4 class="shadowtxt h4txt">Be better prepare for doctor visits and unexpected emergencies.</h4>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/images/pic33.jpg" alt="STORING RECORDS" class="img-responsive" style="width: 100%; margin: auto">
+                    <div class="carousel-caption">
+                        <h1 class="lesspad shadowtxt h1txt">Store Records</h1>
+                        <h4 class="shadowtxt h4txt">Create a more complete picture of your health</h4>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/images/pic1.jpg" alt="STORING RECORDS" class="img-responsive" style="width: 100%; margin: auto">
+                    <div class="carousel-caption">
+                        <h1 class="lesspad shadowtxt h1txt">Track Goals</h1>
+                        <h4 class="shadowtxt h4txt">Achieve your fitness goals</h4>
+
+                    </div>
+                </div>
+
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span> </a><a class="right carousel-control" href="#myCarousel"
+                role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span> </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 whitebg">
+            <h3 class="text-center" style="margin-top: 7px">MyHealthRecord Features</h3>
+            <div class="col-md-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-2 col-sm-2  text-center">
+                <a class="links hvr-grow">
+                    <img src="assets/images/011.png" class="img-responsive">
+                </a>
+                <p>Health Management</p>
+            </div>
+            <div class="col-md-2 col-sm-2  text-center">
+                <a class="links hvr-grow">
+                    <img src="assets/images/022.png" class="img-responsive">
+                </a>
+                <p>Emergency Profile</p>
+            </div>
+            <div class="col-md-2 col-sm-2  text-center">
+                <a class="links hvr-grow">
+                    <img src="assets/images/033.png" class="img-responsive">
+                </a>
+                <p>Record Management</p>
+            </div>
+            <div class="col-md-2 col-sm-2 text-center">
+                <a class="links hvr-grow">
+                    <img src="assets/images/044.png" class="img-responsive">
+                </a>
+                <p>Track Goals</p>
+            </div>
+            <div class="col-md-2 col-sm-2  text-center">
+                <a class="links hvr-grow">
+                    <img src="assets/images/05.png" class="img-responsive">
+                </a>
+                <p>Share Documents</p>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 panelsrow">
+            <div class="container">
+                <div class="col-md-4 col-sm-4">
+                    <div class="panel panel-primary nobdr">
+                        <div class="panel-heading">About MyHealthRecord</div>
+                        <div class="panel-body text-center pnlhght">
+
+                            <video width="320" height="240" autoplay controls>
+  <source src="assets/Video/PHRAnimation.mp4" type="video/mp4" >
+  <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
+  Your browser does not support HTML5 video.
+</video>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="panel panel-primary nobdr">
+                        <div class="panel-heading">It’s easy to register with MyHealthRecord </div>
+                        <div class="panel-body pnlhght">
+                            <p>To sign up for MyHealthRecord, you need to fill a registration form with following details:</p>
+                            <p class="left20">1. <strong>Registration</strong>: Fill the registration form for all mandatory fields. Mobile number, is used to send the OTP.</p>
+                            <p class="left20">2. <strong>Confirm Mobile OTP </strong>: Fill the OTP received on your mobile number for final submission. </p>
+                            <p class="left20">3. <strong>Complete</strong>: Once you submit the OTP you will complete the registration process. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="panel panel-primary nobdr">
+                        <div class="panel-heading">MyHealthRecord Apps:(Coming Soon)</div>
+                        <div class="panel-body text-center pnlhght">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a href="assets/AndroidApp/MyHealthRecordLive.apk"><img src="assets/images/MobileOS_Android11.png" class="img-responsive" width="50"></a>
+                                </div>
+                                <div class="col-md-9 text-left">
+                                    <h4>MyHealthRecord for Android</h4>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a href="#"><img src="assets/images/MobileOS_iOS11.png" class="img-responsive" width="50"></a>
+                                </div>
+                                <div class="col-md-9 text-left">
+                                    <h4>MyHealthRecord for iOS</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 panelsrow">
+            <img src="https://subscriber.cbps.gov.in/assets/uploads/3rpbtfC38B9muoRQ?81" width="1350" id="_83LuNIDyMbmImJnQ" onclick="javascript:window.open('https://subscriber.cbps.gov.in/aff/83LuNIDyMbmImJnQ')" style="cursor:pointer" onload="javascript:(function(){if(typeof _done == 'undefined' || !_done){this.setAttribute('src', this.getAttribute('src')+'?'+Math.floor((Math.random() * 100) + 1)); _done=true;}}).call(this)">
+        </div>
+
+        <div style="clear: both"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12 bgfooter">
+            <div class="container">
+
+                <div class="col-md-6 col-sm-6 ftrgap">
+                    <div class="row">
+                        <div class="titlefooter"><strong></strong></div>
+
+                        <ul class="ftrlists">
+                            <li>&nbsp;<a class="whitetext" href="http://cdac.in/index.aspx?id=about" target="_blank">About</a> | </li>
+
+                            <li>&nbsp;<a class="whitetext" href="/FAQS">FAQs</a> | </li>
+
+                            <li>&nbsp;<a class="whitetext" href="/ContactUs">Contact us</a></li>
+                        </ul>
+
+                        <div class="securityfoot">
+                            <ul class="ftrlists">
+                                <!-- <li>&nbsp;<a href="#" target="popup"><img src="files/getseal.png" width="80px"></a> &nbsp; </li>
+                                <li>&nbsp;<img src="files/256sll.png" width="90px">&nbsp; </li>-->
+                                <li>Content Owned, Updated and Maintained by C-DAC Mohali</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 ftrgap">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <p style="color: #CCC; text-align: right; margin-top: 15px;">
+                                Centre For Development of Advanced Computing
+                                <br /> A Scientific Society of the Ministry of Electronics &amp; Information Technology, Government of India.<br /> Copyright 2017 MyHealthRecord. All Rights Reserved
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <p style="vertical-align: middle; margin-top: 25px;">
+                                <a href="http://cdac.in/"> <img src="assets/images/whitetranscdac.png" class="img-responsive pull-right" width="100"></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .titlefooter {
+                color: #D9D8D8;
+                font-size: 17px;
+                margin-bottom: 14px;
+                margin-left: 10px;
+                margin-top: 5px;
+            }
+        </style>
+    </div>
+
+    <style>
+        .phrmsrimg {
+            margin-top: -60px;
+            margin-left: 45px;
+        }
+        
+        .bgsignup_phrms {
+            background-color: #337AB7;
+            color: #FFF;
+        }
+        
+        .bgfooter {
+            background-color: #192B39;
+            color: #FFF;
+        }
+        
+        .headerhght {
+            height: 60px;
+        }
+        
+        .hdrshadow {
+            box-shadow: 0 1px 5px #ccc;
+        }
+        
+        .hdrbgclr {
+            background-color: #fff;
+        }
+        
+        .hdrnavcustom {
+            background-color: #fff;
+            margin-top: -20px;
+            margin-right: -43px;
+            float: right;
+        }
+        
+        .titlefooter {
+            color: #D9D8D8;
+            font-size: 17px;
+            margin-bottom: 14px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        /* Validation */
+        
+        .form-control.error {
+            border-color: #e74c3c !important;
+        }
+        
+        label.error,
+        label span.error {
+            color: #e74c3c;
+            margin: 5px 0 0 0;
+            font-weight: 400;
+        }
+        
+        label span.error {
+            margin-left: 5px;
+        }
+        
+        label.error:before {
+            content: "\f071";
+            font-family: 'FontAwesome';
+            margin: 0 4px;
+        }
+        /*Validation Custom*/
+        
+        .input-validation-error {
+            border-color: #e74c3c !important;
+        }
+        
+        span.field-validation-error {
+            margin-left: 5px;
+            color: #e74c3c;
+            margin: 5px 0 0 0;
+            font-weight: 400;
+        }
+        
+        span.field-validation-error:before {
+            content: "\f071";
+            font-family: 'FontAwesome';
+            margin: 0 4px;
+        }
+        
+        .whitetext {
+            color: #fff !important;
+        }
+        
+        .txtwarning {
+            color: #FF3E3E;
+            font-size: 12px;
+        }
+        
+        .ftrlists {
+            display: flex !important;
+            list-style: none !important;
+            text-align: center !important;
+        }
+    </style>
+
+    <!-- Vendor scripts -->
+    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="assets/vendor/iCheck/icheck.min.js"></script>
+    <script src="assets/vendor/sparkline/index.js"></script>
+
+    <!-- App scripts -->
+    <script src="assets/scripts/homer.js"></script>
+
+
+</body>
+
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Disable cut copy paste
+        // $('body').bind('cut copy paste', function(e) {
+        //     e.preventDefault();
+        // });
+
+        //Disable mouse right click
+        $("body").on("contextmenu", function(e) {
+            return false;
+        });
+        $('body').keydown(function(e) {
+            if (e.ctrlKey &&
+                (e.keyCode === 67 ||
+                    e.keyCode === 65 ||
+                    e.keyCode === 86 ||
+                    e.keyCode === 85 ||
+                    e.keyCode === 117)) {
+                //  alert('not allowed');
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
+</script>

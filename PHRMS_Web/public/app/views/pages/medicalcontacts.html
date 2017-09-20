@@ -1,0 +1,933 @@
+<div class="no-print">
+<div class="normalheader transition animated fadeIn">
+    <div class="hpanel hblue">
+        <div class="panel-body">
+            <div id="hbreadcrumb" class="pull-right">
+                <ol class="hbreadcrumb breadcrumb">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li>
+                        <span>Contacts</span>
+                    </li>
+                </ol>
+            </div>
+            <h2 class="font-light m-b-xs">
+                Contacts
+            </h2>
+            <div>
+                <small>
+                    This page makes it easy for you to enter and review information about your Contact(s).
+                    To add a Contact to your record, click 'Add Contact' and follow the onscreen instructions. 
+                    When you are done, the new information will be added to your health record. 
+                    You can return to this page to edit the record at any time. 
+                    <br><br>
+                    <span class="fa fa-user fa-lg"></span> - Entered by User &nbsp;&nbsp;<span class="fa fa-user-md fa-lg text-info"></span> - Entered by Doctor
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content transition animated fadeIn">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#medicalcontact" aria-expanded="true" target="_self" aria-controls="personal">
+                        MEDICAL CONTACTS
+                    </a>
+                </h4>
+            </div>
+            <div id="medicalcontact" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-3 animated-panel fadeIn" style="animation-delay: 0.4s;">
+                                <div class="input-group">
+                                    <input type="text" id="search" ng-model="searchUser.Name" class="form-control" placeholder="Search Contact Name">
+                                    <span class="input-group-btn">
+                                        <button type="button" id="btnSearch" class="btn btn-info">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-9 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                                <span class="pull-right">&nbsp;&nbsp;</span>
+                                <button ng-click="resetModal()" type="button" id="btnAddPlayer" class="btn btn-outline btn-warning2 pull-right" data-toggle="modal" data-target="#addContactsModal">Add Contacts</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center" ng-show="Loading2">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg">
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{SuccessMsg}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg2">
+                                    <div class="alert alert-warning">
+                                        <strong>Success!</strong> {{SuccessMsg2}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="ErrorMsg2">
+                                    <div class="alert alert-danger">
+                                        <strong>Oops!</strong> {{ErrorMsg2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="table-responsive">
+                            <div class="gj-grid-wrapper">
+                                <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                <div style="float: left">S.No.</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 150px; text-align: center;">
+                                                <div style="float: left">Contact Name</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                <div style="float: left">Speciality</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Mobile</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Email Address</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                            <td colspan="8"><strong> No Medical Contact Records Available </strong></td>
+                                        </tr>
+                                        <tr ng-repeat="UserContact in UserContacts | filter:searchUser:false">
+                                            
+                                            <td style="text-align: left;">
+                                                {{$index + 1}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserContact.Name}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserContact.Contact.SpecialityName}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserContact.Mobile}} 
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserContact.Email}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="View" ng-click="showContact(UserContact._id)"><span class="glyphicon glyphicon-eye-open text-info"></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Edit" ng-click="editContact(UserContact._id)"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Delete" ng-click="deleteContact(UserContact._id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" target="_self" data-toggle="collapse" data-parent="#accordion" href="#fnf" aria-expanded="false" aria-controls="collapseTwo">
+                        FRIENDS &amp; Family
+                    </a>
+                </h4>
+            </div>
+            <div id="fnf" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-3 animated-panel fadeIn" style="animation-delay: 0.4s;">
+                                <div class="input-group">
+                                    <input type="text" id="search" ng-model="searchUser.Name" class="form-control" placeholder="Search Contact Name">
+                                    <span class="input-group-btn">
+                                        <button type="button" id="btnSearch" class="btn btn-info">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-9 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                                <span class="pull-right">&nbsp;&nbsp;</span>
+                                <button ng-click="resetPersonalModal()" type="button" id="btnAddPlayer" class="btn btn-outline btn-warning2 pull-right" data-toggle="modal" data-target="#addPersonalContactsModal">Add Contact</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center" ng-show="Loading2">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg3">
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{SuccessMsg3}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg4">
+                                    <div class="alert alert-warning">
+                                        <strong>Success!</strong> {{SuccessMsg4}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="ErrorMsg3">
+                                    <div class="alert alert-danger">
+                                        <strong>Oops!</strong> {{ErrorMsg3}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="table-responsive">
+                            <div class="gj-grid-wrapper">
+                                <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                <div style="float: left">S.No.</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 250px; text-align: center;">
+                                                <div style="float: left">Name</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                <div style="float: left">Email</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Mobile</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-show="emptyList2" class="text-center" style="background-color: ghostwhite;">
+                                            <td colspan="7"><strong> No Personal Contact Records Available </strong></td>
+                                        </tr>
+                                        <tr ng-repeat="PersonalContact in UserPersonalContacts | filter:searchUser:false">
+                                            <td style="text-align: left;">
+                                                {{$index + 1}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{PersonalContact.Name}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{PersonalContact.Email}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{PersonalContact.Mobile}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="View" ng-click="showPersonalContact(PersonalContact._id)"><span class="glyphicon glyphicon-eye-open text-info"></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Edit" ng-click="editPersonalContact(PersonalContact._id)"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Delete" ng-click="deletePersonalContact(PersonalContact._id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Contact Modal -->
+<div class="modal fade hmodal-info" id="addContactsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Add Contact</h4>
+                <small class="font-bold">You can add a new contact in your profile by filling the form below.</small>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center" ng-show="Loading">
+                            <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                        </div>
+                        <div class="show-hide-message" ng-show="ErrorMsg">
+                            <div class="alert alert-danger">
+                                <strong>Oops!</strong> {{ErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <form class="form-horizontal" name="contactForm">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Contact Name: <span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Dr. </span>
+                                        <input type="text" required class="form-control" placeholder="Enter Name" ng-model="contactData.Info.Name" ng-keypress="chknumeric($event)">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label"> Speciality<span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <select class="form-control" ng-options="Contact as Contact.SpecialityName for Contact in ContactList  track by Contact.Id" ng-model="contactData.Info.Contact">
+                                        <option value="">---Select Speciality---</option>
+                                    </select>
+                                    <input required type="hidden" ng-model="contactData.Info.Contact.Id">
+                                    <input required type="hidden" ng-model="contactData.Info.Contact.SpecialityName">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Hospital/Clinic's Name<span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" required class="form-control" placeholder="Clinic Name" ng-model="contactData.Info.HospitalName" ng-keypress="chkalphanumeric($event)">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Address Line 1</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="Address Line 1" ng-model="contactData.Info.Address.line1">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Address Line 2</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="Address Line 2" ng-model="contactData.Info.Address.line2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">City/Village/Town</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="City/Village/Town" ng-model="contactData.Info.Address.city">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">District</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="District" ng-model="contactData.Info.Address.district">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">State<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8">
+                                    <select class="form-control" required ng-options="State as State.Name for State in StateListing  track by State.Id " ng-model="contactData.Info.Address.state"> 
+                                        <option value="">---Select State---</option>
+                                    </select>
+                                    <input required type="hidden" ng-model="contactData.Info.Address.state.Id">
+                                    <input required type="hidden" ng-model="contactData.Info.Address.state.Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">PIN</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="PIN" ng-model="contactData.Info.Address.pin" maxlength="6" ng-keypress="chkspecialchar($event)" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Mobile<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">+91</span>
+                                        <input type="text" class="form-control" required maxlength="10" ng-keypress="chkspecialchar($event)" placeholder="Contact Number.." ng-model="contactData.Info.Mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-sm-4 control-label">Email Address<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8 ">
+                                    <input type="email" class="form-control" required placeholder="Email Address" ng-model="contactData.Info.Email">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-success" ng-click="addContact()" ng-disabled="contactForm.$invalid">Add Contact</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show Contact Modal -->
+<div class="modal fade hmodal-info " id="showContactModal" tabindex="-1 " role="dialog " aria-hidden="true ">
+    <div class="modal-dialog ">
+        <div class="modal-content ">
+            <div class="color-line "></div>
+            <div class="modal-header ">
+                <h4 class="modal-title ">Show Medical Contact</h4>
+                <small class="font-bold ">You can see a contact in your profile by selecting it form the table.</small>
+            </div>
+            <div class="modal-body ">
+                <fieldset ng-disabled="showDisable ">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Contact Name: <span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                <input type="text" required class="form-control" placeholder="Enter Name" ng-model="UserContactData.Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"> Speciality<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                <select required class="form-control" ng-model="UserContactData.Contact.Id">
+                                        <option value="">---Select Speciality---</option>
+                                        <option value="1">Acupressurist</option>
+                                        <option value="2">Aesthetic Medicine Specialist</option>
+                                        <option value="3">Allergist/Immunologist</option>
+                                        <option value="4">Alternative Medicine Specialist</option>
+                                        <option value="5">Anesthesiologist</option>
+                                        <option value="6">Audiologist</option>
+                                        <option value="7">Ayurveda</option>
+                                        <option value="8">Bariatrician</option>
+                                        <option value="9">Cardiologist</option>
+                                        <option value="10">Cosmetic Physician</option>
+                                        <option value="11">Cosmetic/Plastic Surgeon
+                                        </option>
+                                        <option value="12">Dentist</option>
+                                        <option value="13">Dermatologist</option>
+                                        <option value="14">Diabetologist</option>
+                                        <option value="15">Dietitian/Nutritionist</option>
+                                        <option value="16">Ear-Nose-Throat (ENT) Specialist</option>
+                                        <option value="17">Endocrinologist</option>
+                                        <option value="18">Epidemiologist</option>
+                                        <option value="19">Gastroenterologist</option>
+                                        <option value="20">General Physician</option>
+                                        <option value="21">General Surgeon</option>
+                                        <option value="1001">Geneticist</option>
+                                        <option value="1002">Geriatrician</option>
+                                        <option value="1003">Gynaecologist</option>
+                                        <option value="1004">Hematologist</option>
+                                        <option value="1005">Hepatologist</option>
+                                        <option value="1006">Homeopath</option>
+                                        <option value="1008">Integrated Medicine Specialist</option>
+                                        <option value="1009">Internal Medicine Specialist</option>
+                                        <option value="1007">IVF Specialist</option>
+                                        <option value="1010">Microbiologist</option>
+                                        <option value="1011">Mother and Child Care</option>
+                                        <option value="1012">Nephrologist</option>
+                                        <option value="1013">Neurologist</option>
+                                        <option value="1014">Neurosurgeon</option>
+                                        <option value="1016">Non-invasive Cardiologist</option>
+                                        <option value="1015">Non-Invasive Conservative Cardiac Care Specialist</option>
+                                        <option value="1017">Nuclear Medicine Physician</option>
+                                        <option value="1018">Obstetrician</option>
+                                        <option value="1019">Occupational Therapist</option>
+                                        <option value="1020">Oncologist</option>
+                                        <option value="1021">Ophthalmologist</option>
+                                        <option value="1022">Optometrist</option>
+                                        <option value="1023">Oral And Maxillofacial Surgeon</option>
+                                        <option value="1024">Orthopedist</option>
+                                        <option value="1051">Other</option>
+                                        <option value="1026">Pain Management Specialist</option>
+                                        <option value="1027">Pathologist</option>
+                                        <option value="1028">Pediatric Surgeon</option>
+                                        <option value="1029">Pediatrician</option>
+                                        <option value="1030">Phlebologist</option>
+                                        <option value="1031">Physiotherapist</option>
+                                        <option value="1025">PMR (Physical Medicine &amp; Rehabilitation) Specialist</option>
+                                        <option value="1032">Podiatrist</option>
+                                        <option value="1033">Proctologist</option>
+                                        <option value="1034">Psychiatrist</option>
+                                        <option value="1035">Psychologist</option>
+                                        <option value="1036">Pulmonologist</option>
+                                        <option value="1037">Radiologist</option>
+                                        <option value="1038">Rheumatologist</option>
+                                        <option value="1039">Robotic Surgeon</option>
+                                        <option value="1040">Sexologist</option>
+                                        <option value="1041">Siddha Specialist</option>
+                                        <option value="1042">Somnologist</option>
+                                        <option value="1043">Speech Therapist</option>
+                                        <option value="1044">Toxicologist</option>
+                                        <option value="1045">Trichologist</option>
+                                        <option value="1046">Unani Specialist</option>
+                                        <option value="1047">Urologist</option>
+                                        <option value="1048">Venereologist</option>
+                                        <option value="1049">Veterinarian</option>
+                                        <option value="1050">Yoga &amp; Naturopathy Specialist</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Hospital/Clinic's Name<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                <input type="text" required class="form-control" placeholder="Clinic Name" ng-model="UserContactData.HospitalName" ng-keypress="editalphanumeric($event)">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Address Line 1</label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" placeholder="Address Line 1" ng-model="UserContactData.Address.line1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Address Line 2</label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" placeholder="Address Line 2" ng-model="UserContactData.Address.line2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">City/Village/Town</label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" placeholder="City/Village/Town" ng-model="UserContactData.Address.city">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">District</label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" placeholder="District" ng-model="UserContactData.Address.district">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">State<span class="text-danger"> *</span></label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input class="form-control" required placeholder="State" value="{{UserContactData.Address.state.Name}}"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">PIN</label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" placeholder="PIN" ng-model="UserContactData.Address.pin">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Mobile<span class="text-danger"> *</span></label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">+91</span>
+                                    <input type="text" class="form-control" required maxlength="10" placeholder="Contact Number.." ng-model="UserContactData.Mobile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-4 control-label ">Email Address<span class="text-danger "> *</span></label>
+
+                            <div class="col-md-8 ">
+                                <input type="text " class="form-control " required placeholder="Email Address " ng-model="UserContactData.Email">
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Contact Modal -->
+<div class="modal fade hmodal-info" id="updateContactModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Update Contact</h4>
+                <small class="font-bold">You can update an old contact in your profile by filling the form below.</small>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center" ng-show="Loading">
+                            <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                        </div>
+                        <div class="show-hide-message" ng-show="ErrorMsg">
+                            <div class="alert alert-danger">
+                                <strong>Oops!</strong> {{ErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <form class="form-horizontal" name="updateContactForm">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Contact Name: <span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" required class="form-control" placeholder="Enter Name" ng-model="UserContactData.Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label"> Speciality<span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <select id="specialityId" required class="form-control" ng-options="Contact as Contact.SpecialityName for Contact in ContactList   track by Contact.Id" ng-model="UserContactData.Contact">
+                                        <option value="">---Select Speciality---</option>
+                                    </select>
+                                    <input type="hidden" ng-model="UserContactData.Contact.Id">
+                                    <input type="hidden" ng-model="UserContactData.Contact.SpecialityName">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Hospital/Clinic's Name<span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" required class="form-control" placeholder="Clinic Name" ng-model="UserContactData.HospitalName" ng-keypress="editalphanumeric($event)">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Address Line 1</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="Address Line 1" ng-model="UserContactData.Address.line1">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Address Line 2</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="Address Line 2" ng-model="UserContactData.Address.line2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">City/Village/Town</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="City/Village/Town" ng-model="UserContactData.Address.city">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">District</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" placeholder="District" ng-model="UserContactData.Address.district">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">State<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8">
+                                    <select required id="medicalstateid" class="form-control" required ng-options="State as State.Name for State in StateListing  track by State.Id" ng-model="UserContactData.Address.state">
+                                        <option value="">---Select State---</option>
+                                    </select>
+                                    <input required type="hidden" ng-model="UserContactData.Address.state.Id">
+                                    <input required type="hidden" ng-model="UserContactData.Address.state.Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">PIN</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <input type="text" maxlength="6" ng-keypress="chkspecialchar($event)" class="form-control" placeholder="PIN" ng-model="UserContactData.Address.pin">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Mobile<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">+91</span>
+                                        <input type="text" class="form-control" required maxlength="10" ng-keypress="chkspecialchar($event)" placeholder="Contact Number.." ng-model="UserContactData.Mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-sm-4 control-label ">Email Address<span class="text-danger "> *</span></label>
+
+                                <div class="col-md-8 ">
+                                    <input type="email " class="form-control " required placeholder="Email Address " ng-model="UserContactData.Email">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default " data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-success " ng-click="updateContact(UserContactData._id)" ng-disabled="updateContactForm.$invalid">Update Contact</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Personal Contact Modal -->
+<div class="modal fade hmodal-info" id="addPersonalContactsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Add Personal Contact</h4>
+                <small class="font-bold">You can add a new contact in your profile by filling the form below.</small>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center" ng-show="Loading">
+                            <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                        </div>
+                        <div class="show-hide-message" ng-show="ErrorMsg">
+                            <div class="alert alert-danger">
+                                <strong>Oops!</strong> {{ErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <form class="form-horizontal" name="personalContactForm">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Name: <span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" required class="form-control" placeholder="Enter Name" ng-model="personalContactData.Info.Name" ng-keypress="chknumeric($event)" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Mobile  <span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">+91</span>
+                                        <input type="text" class="form-control" required maxlength="10" ng-keypress="chkspecialchar($event)" placeholder="Contact Number.." ng-model="personalContactData.Info.Mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-sm-4 control-label">Email Address<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8 ">
+                                    <input type="email" class="form-control" required placeholder="Email Address" ng-model="personalContactData.Info.Email">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" ng-click="addPersonalContact()" ng-disabled="personalContactForm.$invalid">Add Contact</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show Contact Modal -->
+<div class="modal fade hmodal-info " id="showPersonalContactsModal" tabindex="-1 " role="dialog " aria-hidden="true ">
+    <div class="modal-dialog ">
+        <div class="modal-content ">
+            <div class="color-line "></div>
+            <div class="modal-header ">
+                <h4 class="modal-title ">Show Personal Contact</h4>
+                <small class="font-bold ">You can see a contact in your profile by selecting it form the table.</small>
+            </div>
+            <div class="modal-body ">
+                <fieldset ng-disabled="showDisable ">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Name: <span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                <input type="text" required class="form-control" placeholder="Enter Name" ng-model="UserPersonalContactData.Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Mobile: <span class="text-danger"> *</span></label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">+91</span>
+                                    <input type="text" class="form-control" required maxlength="10" placeholder="Contact Number.." ng-model="UserPersonalContactData.Mobile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-4 control-label ">Email Address: <span class="text-danger "> *</span></label>
+
+                            <div class="col-md-8 ">
+                                <input type="text " class="form-control " required placeholder="Email Address " ng-model="UserPersonalContactData.Email">
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Personal Contact Modal -->
+<div class="modal fade hmodal-info" id="updatePersonalContactModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Update Contact</h4>
+                <small class="font-bold">You can update an old contact in your profile by filling the form below.</small>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center" ng-show="Loading">
+                            <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                        </div>
+                        <div class="show-hide-message" ng-show="ErrorMsg">
+                            <div class="alert alert-danger">
+                                <strong>Oops!</strong> {{ErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <form class="form-horizontal" name="updatePersonalContactForm">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Name: <span class="text-danger"> *</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" required class="form-control" placeholder="Enter Name" ng-model="UserPersonalContactData.Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Mobile<span class="text-danger"> *</span></label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">+91</span>
+                                        <input type="text" class="form-control" required maxlength="10" ng-keypress="chkspecialchar($event)" placeholder="Contact Number.." ng-model="UserPersonalContactData.Mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-sm-4 control-label ">Email Address<span class="text-danger "> *</span></label>
+
+                                <div class="col-md-8 ">
+                                    <input type="email" class="form-control" required placeholder="Email Address" ng-model="UserPersonalContactData.Email">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-success" ng-click="updatePersonalContact(UserPersonalContactData._id)" ng-disabled="updatePersonalContactForm.$invalid">Update Contact</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

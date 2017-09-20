@@ -1,0 +1,448 @@
+<div class="no-print">
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel hred">
+            <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li>
+                            <span>Procedure</span>
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Procedures
+                </h2>
+                <div>
+                    <small>
+                    This page makes it easy for you to enter and review information about your procedures. 
+                    To add a procedure to your record, click 'Add Procedure' and follow the on-screen instructions. 
+                    When you are done, the new information will be added to your health record. <br><br>
+                    <span class="fa fa-user fa-lg"></span> - Entered by User &nbsp;&nbsp;<span class="fa fa-stethoscope fa-lg text-info"></span> - Entered by Doctor
+                </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content transition animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12 animated-panel fadeIn" style="animation-delay: 0.3s;">
+                <div class="hpanel hviolet">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                        </div>
+                        Please add your procedure details here.
+                    </div>
+                    <div class="panel-body float-e-margins">
+                        <div class="row">
+                            <div class="col-md-3 animated-panel fadeIn" style="animation-delay: 0.4s;">
+                                <div class="input-group">
+                                    <input type="text" id="search" ng-model="searchUser.Procedure.ProcedureName" class="form-control" placeholder="Search Procedure Name">
+                                    <span class="input-group-btn">
+                                    <button type="button" id="btnSearch" class="btn btn-info">Go!</button>
+                                </span>
+                                </div>
+                            </div>
+                            <div class="col-md-9 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                                <!--<div class="pull-right">
+                                <button data-toggle="modal" data-target="#myModal" class="btn btn-info btn-outline " type="button">
+                                    <i class="fa fa-share"></i> Download <span class="caret"></span>
+                                </button>
+                            </div>-->
+                                <span class="pull-right">&nbsp;&nbsp;</span>
+                                <button ng-click="resetModal()" type="button" id="btnAddPlayer" class="btn btn-outline btn-warning2 pull-right" data-toggle="modal" data-target="#addProcedureModal">Add Procedure</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center" ng-show="Loading2">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg">
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{SuccessMsg}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg2">
+                                    <div class="alert alert-warning">
+                                        <strong>Success!</strong> {{SuccessMsg2}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="ErrorMsg2">
+                                    <div class="alert alert-danger">
+                                        <strong>Oops!</strong> {{ErrorMsg2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="table-responsive">
+                            <div class="gj-grid-wrapper">
+                                <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                <div style="float: left">S.No.</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                <div style="float: left">Entered By</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                <div style="float: left">Procedure Name</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Performed By</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Performed On</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                            <td colspan="7"><strong> No Condition Records Available </strong></td>
+                                        </tr>
+                                        <tr ng-repeat="UserProcedure in UserProcedures | filter:searchUser:false">
+                                            <td style="text-align: left;">
+                                                {{$index + 1}}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="fa fa-user fa-lg" ng-if="UserProcedure.SourceId == 1"></span>
+                                                <span class="fa fa-stethoscope fa-lg" ng-if="UserProcedure.SourceId == 2"></span>
+                                                <span class="fa fa-user fa-lg" ng-if="UserProcedure.SourceId == 3"></span>
+                                                <span class="fa fa-user fa-lg" ng-if="UserProcedure.SourceId == 4"></span>
+                                            </td>
+                                            <!--<td style="text-align: center;">
+                                            <span class="fa fa-user fa-lg"></span>
+                                        </td>-->
+                                            <td style="text-align: left;">
+                                                {{UserProcedure.Procedure.ProcedureName}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserProcedure.DoctorHospital}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserProcedure.strDateofProcedure}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="View" ng-click="showProcedure(UserProcedure._id)"><span class="glyphicon glyphicon-eye-open text-info"></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Delete" ng-click="deleteProcedure(UserProcedure._id,UserProcedure.Procedure.ProcedureName)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Procedure Modal -->
+    <div class="modal fade hmodal-info" id="addProcedureModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Procedure</h4>
+                    <small class="font-bold">You can add a new procedure in your profile by filling the form below.</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center" ng-show="Loading">
+                                <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                            </div>
+                            <div class="show-hide-message" ng-show="ErrorMsg">
+                                <div class="alert alert-danger">
+                                    <strong>Oops!</strong> {{ErrorMsg}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="AddForm1">
+                        <div class="input-group">
+
+                            <input class="form-control" ng-model="searchText" placeholder="Search Procedure" type="search" ng-change="searchproc()" />
+
+
+
+                            <span class="input-group-addon">
+
+      <span class="glyphicon glyphicon-search"></span>
+
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <form name="procedureForm1">
+                                <ul class="pagination" style="margin-bottom: 0px;" ng-show="PageOrder1">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-click="getList('a')" href="#">A</a></li>
+                                    <li><a ng-click="getList('b')" href="#">B</a></li>
+                                    <li><a ng-click="getList('c')" href="#">C</a></li>
+                                    <li><a ng-click="getList('d')" href="#">D</a></li>
+                                    <li><a ng-click="getList('e')" href="#">E</a></li>
+                                    <li><a ng-click="getList('f')" href="#">F</a></li>
+                                    <li><a ng-click="getList('g')" href="#">G</a></li>
+                                    <li><a ng-click="getList('h')" href="#">H</a></li>
+                                    <li><a ng-click="getList('i')" href="#">I</a></li>
+                                    <li><a ng-click="getList('j')" href="#">J</a></li>
+                                    <li><a ng-click="getList('k')" href="#">K</a></li>
+                                    <li><a ng-click="getList('l')" href="#">L</a></li>
+                                    <li><a ng-click="getList('m')" href="#">M</a></li>
+                                    <li>
+                                        <a ng-click="showNextPage()" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pagination" style="margin-bottom: 0px;" ng-show="PageOrder2">
+                                    <li>
+                                        <a ng-click="showPrevPage()" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-click="getList('n')" href="#">N</a></li>
+                                    <li><a ng-click="getList('o')" href="#">O</a></li>
+                                    <li><a ng-click="getList('p')" href="#">P</a></li>
+                                    <li><a ng-click="getList('q')" href="#">Q</a></li>
+                                    <li><a ng-click="getList('r')" href="#">R</a></li>
+                                    <li><a ng-click="getList('s')" href="#">S</a></li>
+                                    <li><a ng-click="getList('t')" href="#">T</a></li>
+                                    <li><a ng-click="getList('u')" href="#">U</a></li>
+                                    <li><a ng-click="getList('v')" href="#">V</a></li>
+                                    <li><a ng-click="getList('w')" href="#">W</a></li>
+                                    <li><a ng-click="getList('x')" href="#">X</a></li>
+                                    <li><a ng-click="getList('y')" href="#">Y</a></li>
+                                    <li><a ng-click="getList('z')" href="#">Z</a></li>
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="text-center" ng-show="ListLoader">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <select ng-show="List" ng-options="Procedure as Procedure.ProcedureName for Procedure in ProcedureList  | filter:search:false" size="12" class="form-control" ng-model="ProcedureData.Info.Procedure" required>
+                        <option value="" selected="selected">Choose One</option>
+                    </select>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div ng-show="AddForm2">
+                        <div class="row">
+                            <form name="procedureForm2" enctype="multipart/form-data">
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Procedure Name: <span style="color: red;">*</span></label>
+                                            <input class="form-control" ng-model="ProcedureData.Info.Procedure.ProcedureName" readonly></p>
+                                            <input class="form-control" type="hidden" ng-model="ProcedureData.Info.Procedure.Id" readonly></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Date of Procedure: <span style="color: red;">*</span></label><br />
+                                            <div class="input-group">
+                                                <input id="datapicker2" placeholder="dd/mm/yyyy" data-date-end-date="0d" type="text" required class="form-control" ng-model="ProcedureData.Info.strDateofProcedure" />
+                                                <label class="input-group-addon btn" for="date"><span><i class="glyphicon glyphicon-th dateimage" ></i></span></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Performed By:</label>
+                                            <input type="text" placeholder="Doctor/Hospital" class="form-control" ng-model="ProcedureData.Info.DoctorHospital" ng-keypress="chkalphanumeric($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Document:</label>
+                                            <input input type='file' placeholder="Upload Summary" class="form-control" ng-model='ProcedureData.Info.File' base-sixty-four-input>
+                                            <p id="fileName"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12" style="text-align:center;">
+                                            <strong>OR</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12" style="text-align:center;">
+                                            <div class="share_fm_dl_sm" id="attachment_poi"></div>
+                                            <input type="hidden" name="path" id="path" ng-model="LabData.info.path" ng-value="path" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Notes:</label>
+                                            <textarea class="form-control" placeholder="Some Notes" ng-model="ProcedureData.Info.Notes"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <span ng-show="AddForm1"><button type="button" class="btn btn-primary" ng-click="showNextForm()" ng-disabled="procedureForm1.$invalid">Next</button></span>
+                    <span ng-show="AddForm2"><button type="submit" class="btn btn-success" ng-click="addProcedure()" ng-disabled="procedureForm2.$invalid">Add Procedure</button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show Allergy Modal -->
+    <div class="modal fade hmodal-info" id="showProcedureModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Procedure Details</h4>
+                    <!-- <small class="font-bold">You can see an procedure in your profile by selecting it form the table.</small> -->
+                </div>
+                <div class="modal-body">
+                    <fieldset ng-disabled="showDisable">
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Procedure Name: <span style="color: red;">*</span></label>
+                                        <input class="form-control" ng-model="UserProcedureData.Procedure.ProcedureName" readonly></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Date of Procedure: <span style="color: red;">*</span></label><br />
+                                        <div class="input-group">
+                                            <input id="datapicker2" placeholder="mm/dd/yyyy" type="text" required class="form-control" ng-model="UserProcedureData.strDateofProcedure" />
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Performed By:</label>
+                                        <input type="text" placeholder="Doctor/Hospital" class="form-control" ng-model="UserProcedureData.DoctorHospital">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="control-label">Performed By:</label>
+                                    <input type="text" placeholder="Doctor/Hospital" class="form-control" ng-model="UserProcedureData.DoctorHospital">
+                                </div>
+                            </div>
+                        </div> -->
+                            <div class="form-group col-lg-12" ng-show="UserProcedureData.FileFlag">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Uploaded Doc:</label>
+                                        <p>
+                                            <a ng-show="ShowPdfFile" href="{{UserProcedureData.FilePath}}" target="_blank" class="fa fa-file-pdf-o" style="font-size:48px;color:red"></a>
+                                            <a ng-show="ShowImageFile" ng-click="openLightboxModal(0)">
+                                                <img ng-src="{{UserProcedureData.FilePath}}" class="img-thumbnail" width="100" height="100">
+                                            </a>
+
+                                        </p>
+                                        <div id="divDigi">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Notes:</label>
+                                        <textarea class="form-control" placeholder="Some Notes" ng-model="UserProcedureData.Notes"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function SetTimeStamp() {
+            var body = document.getElementsByTagName('body')[0];
+            var scriptFetch = document.createElement('script');
+            //alert(Date.now());
+            var timestamp = Date.now().toString().substring(0, 10);
+            var hash_string = "Enter yor digi locker api key" + timestamp;
+            hash_string = sha256_digest(hash_string);
+            scriptFetch.type = 'text/javascript';
+            scriptFetch.src = "https://services.digitallocker.gov.in/requester/api/1/dl.js";
+            scriptFetch.id = "dlshare";
+            scriptFetch.setAttribute('data-app-id', 'Enter yor digi locker api key');
+            scriptFetch.setAttribute('data-app-hash', hash_string);
+
+            scriptFetch.setAttribute('data-upload-url', "/api/account/UploadProcedureDigilockerFile");
+            scriptFetch.setAttribute("time-stamp", timestamp);
+            body.appendChild(scriptFetch);
+            //  alert(timestamp);
+            var scriptSave = document.createElement('script');
+            scriptSave.type = 'text/javascript';
+            scriptSave.src = "https://services.digitallocker.gov.in/savelocker/api/1/savelocker.js";
+            scriptSave.id = "dlshare";
+            scriptSave.setAttribute('data-app-id', 'Enter yor digi locker api key');
+            scriptSave.setAttribute('data-app-hash', hash_string);
+            scriptSave.setAttribute("time-stamp", timestamp);
+            body.appendChild(scriptSave);
+        }
+        SetTimeStamp();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.dateimage').click(function(event) {
+                event.preventDefault();
+                $('#datapicker2').focus();
+            });
+        });
+    </script>
+</div>

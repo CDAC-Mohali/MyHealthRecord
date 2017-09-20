@@ -1,0 +1,533 @@
+<div class="no-print">
+<div class="normalheader transition animated fadeIn">
+    <div class="hpanel hblue">
+        <div class="panel-body">
+            <div id="hbreadcrumb" class="pull-right">
+                <ol class="hbreadcrumb breadcrumb">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li>
+                        <span>Profile</span>
+                    </li>
+                </ol>
+            </div>
+            <h2 class="font-light m-b-xs">
+                Profile
+            </h2>
+            <div>
+                <small>
+               Includes your essential information including <strong>demographics</strong>, <strong>emergency</strong> details and <strong> insurance </strong>details
+            </small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="normalheader transition animated fadeIn">
+    <div class="hpanel hblue">
+        <div class="panel-heading hbuilt">
+            <div class="panel-tools">
+            </div>
+            {{u_name+'\'s Profile Data'}}
+        </div>
+        <div class="panel-body">
+            <div class="row" style="padding-bottom: 15px;">
+                <div class="col-lg-12">
+                    <div class="text-center" ng-show="Loading">
+                        <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                    </div>
+                    <div class="show-hide-message" ng-show="SuccessMsg">
+                        <div class="alert alert-success">
+                            {{SuccessMsg}}
+                        </div>
+                    </div>
+                    <div class="show-hide-message" ng-show="ErrorMsg">
+                        <div class="alert alert-danger">
+                            {{ErrorMsg}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" ng-click="chkmessage($event)" href="#personal" aria-expanded="true" target="_self" aria-controls="personal">
+                                    PERSONAL INFORMATION
+                                </a>
+                        </h4>
+                    </div>
+                    <div id="personal" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <fieldset ng-disabled="personalDisable">
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>First Name <span style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control" ng-model="userData.personal.name.first" placeholder="First Name" ng-keypress="chknumeric($event)">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>Last Name <span style="color: red;">*</span></label>
+                                                    <input type="text" value="" id="" class="form-control" ng-model="userData.personal.name.last" placeholder="Last Name" ng-keypress="chknumeric($event)">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Date Of Birth <span style="color: red;">*</span></label>
+                                                    <input type="text" value="" id="datapicker2" class="form-control" data-date-end-date="0d" ng-model="userData.personal.dob" placeholder="mm/dd/yyyy">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>Gender <span style="color: red;">*</span></label>
+                                                    <select class="form-control" ng-model="userData.personal.gender">
+                                                            <option value="M">Male</option>
+                                                            <option value="F">Female</option>
+                                                            <option value="U">Do Not Specify</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Aadhar </label>
+                                                    <input type="text" class="form-control" ng-model="userData.personal.aadhar" placeholder="" maxlength="12" ng-keypress="chkspecialchar($event)">
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label>Email</label>
+                                                    <input type="email" readonly value="" id="" class="form-control" ng-model="userData.personal.email" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+
+                                                <div class="col-lg-6">
+                                                    <label>Blood Group <span style="color: red;">*</span></label>
+                                                    <select value="" id="" class="form-control" ng-model="userData.personal.blood">
+                                                            <option selected="selected" value="Do Not Specify">Do Not Specify</option>
+                                                            <option value="A Negative">A Negative</option>
+                                                            <option value="A Positive">A Positive</option>
+                                                            <option value="AB Negative">AB Negative</option>
+                                                            <option value="AB Positive">AB Positive</option>
+                                                            <option value="B Negative">B Negative</option>
+                                                            <option value="B Positive">B Positive</option>
+                                                            <option value="O Negative">O Negative</option>
+                                                            <option value="O Positive">O Positive</option>
+                                                        </select>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label>Mobile <span style="color: red;">*</span></label>
+                                                    <input type="text" readonly maxlength="10" value="" id="" class="form-control" ng-model="userData.personal.mobile" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-6 form-group">
+                                                    <label>Address Line 1</label>
+                                                    <input class="form-control" placeholder="" type="text" ng-model="userData.personal.address.line1">
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <label>Address Line 2</label>
+                                                    <input class="form-control" placeholder="" type="text" ng-model="userData.personal.address.line2">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-3 form-group">
+                                                    <label>Town/City</label>
+                                                    <input class="form-control" placeholder="" type="text" ng-model="userData.personal.address.city">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>District</label>
+                                                    <input class="form-control" placeholder="" type="text" ng-model="userData.personal.address.district">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                   <label>State <span style="color: red;">*</span></label>
+                                                    <select id="selectstate" ng-show="editable" class="form-control" required ng-options="State as State.Name for State in StateListing track by State.Id " ng-model="userData.personal.address.state">
+                                                                <option value="">---Select State---</option>
+                                                            </select>
+                                                    <input type="text" ng-hide="editable" value="{{userData.personal.address.state.Name}}" class="form-control" />
+                                                    <input required type="hidden" ng-model="userData.personal.address.state.Id">
+                                                    <input required type="hidden" ng-model="userData.personal.address.state.Name">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>PIN</label>
+                                                    <input class="form-control" placeholder="" type="text" ng-model="userData.personal.address.pin" maxlength="6" ng-keypress="chkspecialchar($event)">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-6 form-group">
+                                                    <label> Are you differently abled?</label>
+                                                    <input type="radio" ng-click="setdisability();" ng-model="userData.personal.disability" data-ng-value="true">Yes
+                                                    <input type="radio" ng-click="setdisability();" ng-model="userData.personal.disability" data-ng-value="false">No
+                                                </div>
+
+                                                <div class="col-xs-4 form-group" ng-show="userData.personal.disability">
+                                                    <label>Type:</label>
+                                                    <select value="" id="" class="form-control" ng-init="userData.personal.disabilitytype=0" ng-model="userData.personal.disabilitytype">
+                                                            <option selected="selected" value="0">Do Not Specify</option>
+                                    <option value="5">Not Specified</option>
+                                    <option value="1">Physical Disability</option>
+                                    <option value="2">Speech and Language Disorder</option>
+                                    <option value="3">Vision Loss and blindness</option>
+                                    <option value="4">Others</option>
+                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 form-group" ng-if="userData.personal.disability ==true" ng-show="editable">
+                                                    <label>Upload Certificate:</label>
+
+                                                    <input type='file' placeholder="Upload Summary" class="form-control" ng-model='userData.personal.File' base-sixty-four-input  onchange="angular.element(this).scope().uploadImage(this.files)">
+                                                    <p id="fileName"></p>
+                                                </div>
+
+
+
+                                                <div class="col-xs-5 " ng-if="userData.personal.disabilityimage !=''" ng-show="userData.personal.disability">
+                                                    <br/>
+                                                    <label>Download Certificate:</label>
+
+     <a  href="{{userData.personal.disabilityimage}}" target="_blank"  style="font-size:18px;color:black"><i class="fa fa-download"></i></a>
+                                      
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <p class="small m-t-md">
+                                                <div class="pull-right show-hide-message">
+                                                    <button class="btn btn-info" ng-show="personalsave" ng-click="editPersonal()"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                                                    <button class="btn btn-primary" ng-show="personaledit" ng-click="updateUser('S1')">Update</button>
+                                                    <button type="button" id="btnCancel" ng-show="personalcancel" ng-click="cancelPersonal()" class="btn btn-default cancel">Cancel</button>
+
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" target="_self" data-toggle="collapse" ng-click="chkmessage($event)" data-parent="#accordion" href="#emergency" aria-expanded="false" aria-controls="collapseTwo">
+                                    EMERGENCY INFORMATION
+                                </a>
+                        </h4>
+                    </div>
+                    <div id="emergency" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <fieldset ng-disabled="emergencyDisable">
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Name <span style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control" ng-model="userData.emergency.name" ng-keypress="chknumeric($event)">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>Relationship</label>
+                                                    <select class="form-control" ng-model="userData.emergency.relationship">
+                                                         <option value="Aunt">Aunt</option>
+                                                           <option value="Brother">Brother</option>
+                                                            <option value="Brother-in-law">Brother-in-law</option>
+                                                            <option value="Daughter">Daughter</option>
+                                                            <option value="Daughter-in-law">Daughter-in-law</option>
+                                                            <option value="Father">Father</option>
+                                                            <option value="Father-in-law">Father-in-law</option>
+                                                            <option value="Granddaughter">Granddaughter</option>
+                                                            <option value="Grandfather">Grandfather</option>
+                                                            <option value="Grandmother">Grandmother</option>
+                                                            <option value="Grandson">Grandson</option>
+                                                            <option value="Husband">Husband</option>
+                                                            <option value="Mother">Mother</option>
+                                                            <option value="Mother-in-law">Mother-in-law</option>
+                                                            <option value="Nephew">Nephew</option>
+                                                            <option value="Niece">Niece</option>
+                                                            <option value="Self">Self</option>
+                                                            <option value="Sister">Sister</option>
+                                                            <option value="Sister-in-law">Sister-in-law</option>
+                                                            <option value="Son">Son</option>
+                                                            <option value="Son-in-law">Son-in-law</option>
+                                                            <option value="Uncle">Uncle</option>
+                                                            <option value="Wife">Wife</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Primary Phone<span style="color: red;">*</span></label>
+                                            <input type="text" value="" id="" class="form-control" ng-model="userData.emergency.mobile.primary" maxlength="10" ng-keypress="chkspecialchar($event)">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Secondary Phone</label>
+                                            <input type="text" value="" id="" class="form-control" ng-model="userData.emergency.mobile.secondary" maxlength="10" ng-keypress="chkspecialchar($event)">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-6 form-group">
+                                                    <label>Address Line 1</label>
+                                                    <input class="form-control" type="text" ng-model="userData.emergency.address.line1">
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <label>Address Line 2</label>
+                                                    <input class="form-control" type="text" ng-model="userData.emergency.address.line2">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-3 form-group">
+                                                    <label>Town/City</label>
+                                                    <input class="form-control" type="text" ng-model="userData.emergency.address.city">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>District</label>
+                                                    <input class="form-control" type="text" ng-model="userData.emergency.address.district">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>State</label>
+                                                    <select id="selectemergencystate" ng-show="editable" class="form-control" required ng-options="State as State.Name for State in StateListing track by State.Id " ng-model="userData.emergency.address.state">.
+                                                                <option value="">---Select State---</option>
+                                                            </select>
+                                                    <input type="text" ng-hide="editable" value="{{userData.emergency.address.state.Name}}" class="form-control" />
+                                                    <input required type="hidden" ng-model="userData.emergency.address.state.Id">
+                                                    <input required type="hidden" ng-model="userData.emergency.address.state.Name">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>PIN</label>
+                                                    <input class="form-control" type="text" ng-model="userData.emergency.address.pin" maxlength="6" ng-keypress="chkspecialchar($event)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <p class="small m-t-md">
+                                                <div class="pull-right show-hide-message">
+                                                    <button class="btn btn-info" ng-show="emergencysave" ng-click="editEmergency()"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                                                    <button class="btn btn-primary" ng-show="emergencyedit" ng-click="updateUser('S2')">Update</button>
+                                                    <button type="button" id="btnCancel" ng-show="emergencycancel" ng-click="cancelEmergency()" class="btn btn-default cancel">Cancel</button>
+
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" ng-click="chkmessage($event)" target="_self" data-parent="#accordion" href="#employer" aria-expanded="false" aria-controls="collapseThree">
+                                    EMPLOYER INFORMATION
+                                </a>
+                        </h4>
+                    </div>
+                    <div id="employer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <fieldset ng-disabled="employerDisable">
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Employer</label>
+                                                    <input type="text" class="form-control" ng-model="userData.employer.name" />
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>Designation</label>
+                                                    <input type="text" class="form-control" ng-model="userData.employer.designation" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Mobile</label>
+                                            <input type="text" value="" id="" class="form-control" ng-model="userData.employer.mobile" maxlength="10" ng-keypress="chkspecialchar($event)">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>CUG</label>
+                                            <input type="text" value="" id="" class="form-control" ng-model="userData.employer.cug">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-xs-6 form-group">
+                                                    <label>Address Line 1</label>
+                                                    <input class="form-control" type="text" ng-model="userData.employer.address.line1">
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <label>Address Line 2</label>
+                                                    <input class="form-control" type="text" ng-model="userData.employer.address.line2">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-3 form-group">
+                                                    <label>Town/City</label>
+                                                    <input class="form-control" type="text" ng-model="userData.employer.address.city">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>District</label>
+                                                    <input class="form-control" type="text" ng-model="userData.employer.address.district">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>State</label>
+                                                    <select ng-show="editable" class="form-control" required ng-options="State as State.Name for State in StateListing  | filter:search:false" ng-model="userData.employer.address.state">
+                                                                <option value="">---Select State---</option>
+                                                            </select>
+                                                    <input type="text" ng-hide="editable" value="{{userData.employer.address.state.Name}}" class="form-control" />
+                                                    <input required type="hidden" ng-model="userData.employer.address.state.Id">
+                                                    <input required type="hidden" ng-model="userData.employer.address.state.Name">
+                                                </div>
+                                                <div class="col-xs-3 form-group">
+                                                    <label>PIN</label>
+                                                    <input class="form-control" type="text" ng-model="userData.employer.address.pin" maxlength="6" ng-keypress="chkspecialchar($event)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <p class="small m-t-md">
+                                                <div class="pull-right show-hide-message">
+                                                    <button class="btn btn-info" ng-show="employersave" ng-click="editEmployer()"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                                                    <button class="btn btn-primary" ng-show="employeredit" ng-click="updateUser('S3')">Update</button>
+                                                    <button type="button" id="btnCancel" ng-show="employercancel" ng-click="cancelEmployer()" class="btn btn-default cancel">Cancel</button>
+
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" target="_self" data-toggle="collapse" ng-click="chkmessage($event)" data-parent="#accordion" href="#insurance" aria-expanded="false" aria-controls="collapseFour">
+                                    INSURANCE INFORMATION
+                                </a>
+                        </h4>
+                    </div>
+                    <div id="insurance" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <fieldset ng-disabled="inusranceDisable">
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Insurance Provider</label>
+                                                    <input type="text" class="form-control" ng-model="userData.insurance.provider">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>Policy Number</label>
+                                                    <input type="text" class="form-control" ng-model="userData.insurance.number" ng-keypress="chkspecialchar($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Policy Name</label>
+                                            <input type="text" value="" id="" class="form-control" ng-model="userData.insurance.name">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label>Valid Till</label>
+                                            <input type="text" value="" id="datapicker3" class="form-control" data-date-start-date="0d" ng-model="userData.insurance.validity">
+                                        </div>
+                                    </fieldset>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <p class="small m-t-md">
+                                                <div class="pull-right show-hide-message">
+                                                    <button class="btn btn-info" ng-show="inusrancesave" ng-click="editInusrance()"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                                                    <button class="btn btn-primary" ng-show="inusranceedit" ng-click="updateUser('S4')">Update</button>
+                                                    <button type="button" id="btnCancel" ng-show="inusrancecancel" ng-click="cancelInusrance()" class="btn btn-default cancel">Cancel</button>
+
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" target="_self" data-toggle="collapse" data-parent="#accordion" href="#hospital" aria-expanded="false" aria-controls="collapseFive">
+                                    Hospital Preference
+                                </a>
+                        </h4>
+                    </div>
+                    <div id="hospital" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <fieldset ng-disabled="hospitalDisable">
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Preferred Hospital Name</label>
+                                                    <input type="text" class="form-control" ng-model="userData.hospital_preferance.name">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>Preferred Hospital Address</label>
+                                                    <input type="text" class="form-control" ng-model="userData.hospital_preferance.address" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <label>Special Requirements</label>
+                                            <textarea class="form-control" ng-model="userData.hospital_preferance.requirements"></textarea>
+                                        </div>
+                                    </fieldset>
+                                    <div class="col-lg-12 ">
+                                        <div class="row ">
+                                            <p class="small m-t-md ">
+                                                <div class="pull-right show-hide-message ">
+                                                    <button class="btn btn-info " ng-show="hospitalsave" ng-click="editHospital() "><i class="glyphicon glyphicon-pencil "></i> Edit</button>
+                                                    <button class="btn btn-primary " ng-show="hospitaledit" ng-click="updateUser('S5') ">Update</button>
+                                                    <button type="button" id="btnCancel" ng-show="hospitalcancel" ng-click="cancelHospital() " class="btn btn-default cancel">Cancel</button>
+
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+</script>
+</div>

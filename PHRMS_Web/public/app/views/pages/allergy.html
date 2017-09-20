@@ -1,0 +1,415 @@
+<div class="no-print">
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel hblue">
+            <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li>
+                            <span>Allergies</span>
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Allergies
+                </h2>
+                <div>
+                    <small>
+                    This page makes it easy for you to enter and review information about your allergies. To add an allergy to your record, click 'Add Allergy' and follow the on-screen instructions.
+                    When you are done, the new information will be added to your health record.
+                    <br><br>
+                    <span class="fa fa-user fa-lg"></span> - Entered by User &nbsp;&nbsp;<span class="fa fa-stethoscope fa-lg text-info"></span> - Entered by Doctor
+                </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content transition animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12 animated-panel fadeIn" style="animation-delay: 0.3s;">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                        </div>
+                        Please add your allergy details here.
+                    </div>
+                    <div class="panel-body float-e-margins">
+                        <div class="row">
+                            <div class="col-md-3 animated-panel fadeIn" style="animation-delay: 0.4s;">
+                                <div class="input-group">
+                                    <input type="text" id="search" ng-model="searchUser.Allergy.AllergyName" class="form-control" placeholder="Search Allergy Name">
+                                    <span class="input-group-btn">
+                                    <button type="button" id="btnSearch" class="btn btn-info">Go!</button>
+                                </span>
+                                </div>
+                            </div>
+                            <div class="col-md-9 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                                <!--<div class="pull-right">
+                                <button data-toggle="modal" data-target="#myModal" class="btn btn-info btn-outline " type="button">
+                                    <i class="fa fa-share"></i> Download <span class="caret"></span>
+                                </button>
+                            </div>-->
+                                <span class="pull-right">&nbsp;&nbsp;</span>
+                                <button ng-click="resetModal()" type="button" id="btnAddPlayer" class="btn btn-outline btn-warning2 pull-right" data-toggle="modal"
+                                    data-target="#addAllergyModal">Add Allergy</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center" ng-show="Loading2">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg">
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{SuccessMsg}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg2">
+                                    <div class="alert alert-warning">
+                                        <strong>Success!</strong> {{SuccessMsg2}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="ErrorMsg2">
+                                    <div class="alert alert-danger">
+                                        <strong>Oops!</strong> {{ErrorMsg2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="table-responsive">
+                            <div class="gj-grid-wrapper">
+                                <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                <div style="float: left">S.No.</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: center;">
+                                                <div style="float: left">Entered By</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                <div style="float: left">Allergy Name</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">From</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Still Have Allergy?</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                            <td colspan="7"><strong> No Allergy Records Available </strong></td>
+                                        </tr>
+                                        <tr ng-repeat="UserAllergy in UserAllergies | filter:searchUser:false">
+                                            <td style="text-align: left;">
+                                                {{$index + 1}}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="fa fa-user fa-lg" ng-if="UserAllergy.SourceId == 1"></span>
+                                                <span class="fa fa-stethoscope fa-lg" ng-if="UserAllergy.SourceId == 2"></span>
+                                                <span class="fa fa-user fa-lg" ng-if="UserAllergy.SourceId == 3"></span>
+                                                <span class="fa fa-user fa-lg" ng-if="UserAllergy.SourceId == 4"></span>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserAllergy.Allergy.AllergyName}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserAllergy.Value}} {{UserAllergy.Since}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserAllergy.StillHave}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="View" ng-click="showAllergy(UserAllergy._id)"><span class="glyphicon glyphicon-eye-open text-info" ></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Delete" ng-click="deleteAllergy(UserAllergy._id,UserAllergy.Allergy.AllergyName)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Allergy Modal -->
+    <div class="modal fade hmodal-info" id="addAllergyModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Allergy</h4>
+                    <small class="font-bold">You can add a new allergy in your profile by filling the form below.</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center" ng-show="Loading">
+                                <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                            </div>
+                            <div class="show-hide-message" ng-show="ErrorMsg">
+                                <div class="alert alert-danger">
+                                    <strong>Oops!</strong> {{ErrorMsg}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="AddForm1">
+                        <div class="input-group">
+                            <input class="form-control" id="allergySearch" ng-model="searchText" placeholder="Search Allergy" type="search" ng-change="searchallergy()"
+                            />
+
+                            <span class="input-group-addon">
+
+      <span class="glyphicon glyphicon-search"></span>
+
+                            </span>
+
+                        </div>
+                        <div class="text-center">
+                            <form name="allergyForm1">
+                                <ul class="pagination" style="margin-bottom: 0px;" ng-show="PageOrder1">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-click="getList('a')" href="#">A</a></li>
+                                    <li><a ng-click="getList('b')" href="#">B</a></li>
+                                    <li><a ng-click="getList('c')" href="#">C</a></li>
+                                    <li><a ng-click="getList('d')" href="#">D</a></li>
+                                    <li><a ng-click="getList('e')" href="#">E</a></li>
+                                    <li><a ng-click="getList('f')" href="#">F</a></li>
+                                    <li><a ng-click="getList('g')" href="#">G</a></li>
+                                    <li><a ng-click="getList('h')" href="#">H</a></li>
+                                    <li><a ng-click="getList('i')" href="#">I</a></li>
+                                    <li><a ng-click="getList('j')" href="#">J</a></li>
+                                    <li><a ng-click="getList('k')" href="#">K</a></li>
+                                    <li><a ng-click="getList('l')" href="#">L</a></li>
+                                    <li><a ng-click="getList('m')" href="#">M</a></li>
+                                    <li>
+                                        <a ng-click="showNextPage()" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pagination" style="margin-bottom: 0px;" ng-show="PageOrder2">
+                                    <li>
+                                        <a ng-click="showPrevPage()" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-click="getList('n')" href="#">N</a></li>
+                                    <li><a ng-click="getList('o')" href="#">O</a></li>
+                                    <li><a ng-click="getList('p')" href="#">P</a></li>
+                                    <li><a ng-click="getList('q')" href="#">Q</a></li>
+                                    <li><a ng-click="getList('r')" href="#">R</a></li>
+                                    <li><a ng-click="getList('s')" href="#">S</a></li>
+                                    <li><a ng-click="getList('t')" href="#">T</a></li>
+                                    <li><a ng-click="getList('u')" href="#">U</a></li>
+                                    <li><a ng-click="getList('v')" href="#">V</a></li>
+                                    <li><a ng-click="getList('w')" href="#">W</a></li>
+                                    <li><a ng-click="getList('x')" href="#">X</a></li>
+                                    <li><a ng-click="getList('y')" href="#">Y</a></li>
+                                    <li><a ng-click="getList('z')" href="#">Z</a></li>
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="text-center" ng-show="ListLoader">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <select ng-show="List" ng-options="Allergy as Allergy.AllergyName for Allergy in AllergyList  | filter:search:false" size="12"
+                                    class="form-control" ng-model="AllergyData.Info.Allergy" required>
+                        <option value="" selected="selected">Choose One</option>
+                    </select>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div ng-show="AddForm2">
+                        <div class="row">
+                            <form name="allergyForm2">
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Allergy Name: <span style="color: red;">*</span></label>
+                                            <input type="hidden" class="form-control" ng-model="AllergyData.Info.Allergy.Id" readonly>
+                                            <input class="form-control" ng-model="AllergyData.Info.Allergy.AllergyName" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Do you still have this allergy? <span style="color: red;">*</span></label><br
+                                            />
+                                            <input type="radio" id="rdoStillHaveYes" value="Yes" ng-model="AllergyData.Info.StillHave" checked="checked">
+                                            <label for="rdoStillHaveYes" style="margin-right: 12px;"> Yes </label>
+                                            <input type="radio" id="rdoStillHaveNo" value="No" ng-model="AllergyData.Info.StillHave">
+                                            <label for="rdoStillHaveNo"> No </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label class="control-label">Since (months): <span style="color: red;">*</span></label>
+                                            <select required class="form-control" ng-model="AllergyData.Info.Since">
+                                            <option value="" selected="selected">Choose One</option>
+                                            <option value="Day">Day</option>
+                                            <option value="Hour">Hour</option>
+                                            <option value="Minute">Minute</option>
+                                            <option value="Month">Month</option>
+                                            <option value="Week">Week</option>
+                                            <option value="Year">Year</option>
+                                        </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label class="control-label">Value: <span style="color: red;">*</span></label>
+                                            <input type="number" min="0" class="form-control" placeholder="Add Value"  ng-model="AllergyData.Info.Value" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Severity: <span style="color: red;">*</span></label>
+                                            <select required class="form-control" ng-model="AllergyData.Info.Severity">
+                                            <option value="" selected="selected">Choose One</option>
+                                            <option value="Mild">Mild</option>
+                                            <option value="Mild to Moderate">Mild to Moderate</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Moderate to Severe">Moderate to Severe</option>
+                                            <option value="Severe">Severe</option>
+                                            <option value="Very Severe">Life Threatening Severity</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Notes:</label>
+                                            <textarea class="form-control" placeholder="Some Notes" ng-model="AllergyData.Info.Notes"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <span ng-show="AddForm1"><button type="button" class="btn btn-primary" ng-click="showNextForm()" ng-disabled="allergyForm1.$invalid">Next</button></span>
+                    <span ng-show="AddForm2"><button type="button" class="btn btn-success" ng-click="addAllergy()" ng-disabled="allergyForm2.$invalid">Add Allergy</button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show Allergy Modal -->
+    <div class="modal fade hmodal-info" id="showAllergyModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Allergy Details</h4>
+                    <!-- <small class="font-bold">You can see an allergy in your profile by selecting it form the table.</small> -->
+                </div>
+                <div class="modal-body">
+                    <fieldset ng-disabled="showDisable">
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Allergy Name: <span style="color: red;">*</span></label>
+                                        <input class="form-control" ng-model="UserAllergyData.Allergy.AllergyName" readonly></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Do you still have this allergy? <span style="color: red;">*</span></label><br
+                                        />
+                                        <input type="radio" id="rdoStillHaveYes" value="Yes" ng-model="UserAllergyData.StillHave" checked="checked">
+                                        <label for="rdoStillHaveYes" style="margin-right: 12px;"> Yes </label>
+                                        <input type="radio" id="rdoStillHaveNo" value="No" ng-model="UserAllergyData.StillHave">
+                                        <label for="rdoStillHaveNo"> No </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="control-label">Since (months): <span style="color: red;">*</span></label>
+                                        <select required class="form-control" ng-model="UserAllergyData.Since">
+                                            <option value="Day">Day</option>
+                                            <option value="Hour">Hour</option>
+                                            <option value="Minute">Minute</option>
+                                            <option value="Month">Month</option>
+                                            <option value="Week">Week</option>
+                                            <option value="Year">Year</option>
+                                </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="control-label">Value:</label>
+                                        <input type="text" class="form-control" placeholder="Add Value" ng-model="UserAllergyData.Value" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Severity: <span style="color: red;">*</span></label>
+                                        <select required class="form-control" ng-model="UserAllergyData.Severity">
+                                            <option value="Mild">Mild</option>
+                                            <option value="Mild to Moderate">Mild to Moderate</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Moderate to Severe">Moderate to Severe</option>
+                                            <option value="Severe">Severe</option>
+                                            <option value="Very Severe">Life Threatening Severity</option>
+                                </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Notes:</label>
+                                        <textarea class="form-control" placeholder="Some Notes" ng-model="UserAllergyData.Notes"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

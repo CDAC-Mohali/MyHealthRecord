@@ -1,0 +1,765 @@
+<div class="no-print">    
+<div  pdf-save-content="idOne" style="overflow: auto;" id="divcontent" >
+            <div class="normalheader transition animated fadeIn">
+                <div class="hpanel">
+                    <div class="panel-body">
+
+                        <h1 class="font-light m-b-xs text-center">
+                            <img src="assets/images/digital_india_logo.png" class="img-responsive pull-left" height="70" width="70">
+
+                            <img src="assets/images/Indexcdac.jpg" class="img-responsive pull-right" height="50" width="50">
+
+                        </h1>
+                        <h2 class="font-light m-b-xs text-center">
+                            MyHealthRecord
+                        </h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                   
+
+
+                        <div class="panel-body">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Personal Information
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body" id="divPanelPersonalInfo">
+
+                                        <div class="form-horizontal" role="form" id="PersonalInfo">
+
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="FirstName">First Name</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{first}}</p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="LastName">Last Name</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{last}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="Email">E-Mail</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"> {{email}}</p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="Uhid">Aadhaar No.</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{aadhar}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="DOB">Date Of Birth</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{dob}}</p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="Gender">Gender</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"> {{gender}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="BloodType">Blood Group</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{blood}}</p>
+                                                </div>
+
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="AddressLine1">{{address1}}</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"></p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="AddressLine2">{{address2}}</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="City_Vill_Town">City/Village/Town</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{city}} </p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="District">District</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"> {{district}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="strState">State/UT</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{district}}</p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="Pin">PIN</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{pin}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="Home_Phone">Phone</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"> </p>
+                                                </div>
+                                                <label class="col-xs-2 control-label" for="Cell_Phone">Mobile No.</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static">{{mobile}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+                                            <div class="form-group">
+                                                <label class="col-xs-2 control-label" for="DiffAbled">Are you differently abled?</label>
+                                                <div class="col-xs-4">
+                                                    <p class="form-control-static"> {{disability}}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed-Custom"></div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default" ng-show="Allergyenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Allergy
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                            <div style="float: left">Allergy Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">From</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Still Have Allergy?</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Severity</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="UserAllergy in UserAllergies | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+
+                                                        <td style="text-align: left;">
+                                                            {{UserAllergy.Allergy.AllergyName}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserAllergy.Since}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserAllergy.StillHave}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserAllergy.Severity}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default" ng-show="Immunizationenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Immunization
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                            <div style="float: left">Immunization Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                            <div style="float: left">Taken On</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="UserImmunization in UserImmunizations | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserImmunization.Immunization.ImmunizationName}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserImmunization.strTakenOn}}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default" ng-show="Problemenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Problem
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                            <div style="float: left">Diagnosis Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Diagnosis Date</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Still Have Problem?</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UserCondition in UserConditions | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserCondition.Condition.HealthCondition}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserCondition.strDiagnosisDate}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserCondition.StillHave}}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default" ng-show="Labenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Lab
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width:100px; text-align: left;">
+                                                            <div style="float: left">Performed On</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Test Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 150px; text-align: left;">
+                                                            <div style="float: left">Result</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                                            <div style="float: left">Unit</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UserLab in UserLabs | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserLab.strPerformedOn}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserLab.Lab.TestName}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserLab.Result}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserLab.Unit}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default" ng-show="Procedureenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Procedure
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                                            <div style="float: left">Procedure Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Performed By</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Performed On</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UserProcedure in UserProcedures | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserProcedure.Procedure.ProcedureName}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserProcedure.DoctorHospital}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserProcedure.strDateofProcedure}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default" ng-show="Medicationenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                                Medicine
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">Prescribed Date</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Medicine Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                                            <div style="float: left">Still Taking?</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UserMedication in UserMedications | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+
+                                                        <td style="text-align: left;">
+                                                            {{UserMedication.strDatePrescribed}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserMedication.Medicine.MedicineName}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserMedication.StillHave}}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default" ng-show="Activityenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                               Wellness- Activity
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 200px;text-align: left;">
+                                                            <div style="float: left">Activity Name</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 200px; text-align: left;">
+                                                            <div style="float: left">Path</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+
+                                                            <div style="float: left">Distance(Km)</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Date</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UserActi in UserActivity | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+
+                                                        <td style="text-align: left;">
+                                                            {{UserActi.Activity.ActivityName}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserActi.Name}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserActi.Distance}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UserActi.strCreatedDate}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="panel panel-default" ng-show="BloodPressenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                               Wellness - Blood Pressure
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Result Systolic</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Result Diastolic</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Date</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UrBP in UserBP | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+
+                                                        <td style="text-align: left;">
+                                                            {{UrBP.ResSystolic}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UrBP.ResDiastolic}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UrBP.strCollectionDate}}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="panel panel-default" ng-show="BloodGlucenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                               Wellness - BLOOD GLUCOSE
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Result</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Value Type</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Date</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UrBG in UserBG | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+
+                                                        <td style="text-align: left;">
+                                                            {{UrBG.Result}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UrBG.ValueType}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UrBG.strCollectionDate}}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default" ng-show="BMIenable">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                               Wellness -BMI
+                                            </a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <div class="gj-grid-wrapper">
+                                            <table class="footable table table-bordered table-hover gj-grid-table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                            <div style="float: left">S.No.</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Weight (in Kg)</div>
+                                                        </th>
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Height (in cm)</div>
+                                                        </th>
+
+                                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                            <div style="float: left">Date</div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="UrBMI in UserBMI | filter:searchUser:false">
+                                                        <td style="text-align: left;">
+                                                            {{$index + 1}}
+                                                        </td>
+
+                                                        <td style="text-align: left;">
+                                                            {{UrBMI.Weight}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UrBMI.Height}}
+                                                        </td>
+                                                        <td style="text-align: left;">
+                                                            {{UrBMI.strCollectionDate}}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                         
+                            
+                          
+                        </div>
+
+                </div>
+            </div>
+             </div>
+        </div>
+            </div>

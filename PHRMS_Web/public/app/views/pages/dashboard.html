@@ -1,0 +1,527 @@
+<div class="no-print">
+    <div class="normalheader transition animated fadeIn" style="text-align:center">
+        <div class="hpanel hgreen">
+            <div class="panel-body">
+                <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <h5 class="font-light m-b-xs text-success animated infinite fadeIn" id="tipHeader">
+                    <i class="fa fa-heart-o text-danger"></i> Health Tip
+                </h5>
+                <div id="hbreadcrumb" class="pull-right m-t-lg">
+                </div>
+                <h7 id="healthTipCtrl" style="color:#B76215;">{{HealthTips}} </h7>
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel " id="maindiv">
+
+
+        <div id="container">
+            <div class="well">
+                <div class="col-lg-12 animated-panel fadeIn" style="animation-delay: 0.2s;">
+                    <div class="text-center">
+                        <div class="btn-group">
+                            <button type="button" id="dashbtoday" ng-click="GetCalories(1)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Today</button>
+                            <button type="button" id="dashbweek" ng-click="GetCalories(2)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Week</button>
+                            <button type="button" id="dashbmonth" ng-click="GetCalories(3)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Month</button>
+                            <button type="button" id="dashbyear" ng-click="GetCalories(4)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Year</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12 animated-panel fadeIn " style="animation-delay: 0.9s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                Estimated Calories
+                            </div>
+                            <div class="panel-body ">
+                                <div class="row ">
+                                    <div class="col-md-12 animated-panel fadeIn " style="animation-delay: 0.8s; ">
+                                        <fusioncharts type="mscombi2d" datasource="{{myActivityDataSource}}" width="900" height="420"></fusioncharts>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 1.6s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                SPo2
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body ">
+                                <div class="row ">
+
+                                    <div class="col-md-10 animated-panel fadeIn " style="animation-delay: 1.5s; ">
+
+                                        <fusioncharts type="line" datasource="{{mySPo2DataSource}} " width="400" height="420"></fusioncharts>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 animated-panel fadeIn" style="animation-delay: 0.7s;">
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Blood Pressure
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-10 animated-panel fadeIn" style="animation-delay: 0.8s;">
+                                        <fusioncharts type="mscombi2d" datasource="{{myDataSource}}" width="400" height="420"></fusioncharts>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row ">
+
+                    <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 1.4s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                Body Temperature
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body ">
+                                <div class="row ">
+
+                                    <div class="col-md-10 animated-panel fadeIn " style="animation-delay: 1.5s; ">
+                                        <fusioncharts type="line" datasource="{{myBodyTempDataSource}}" width="400" height="400"></fusioncharts>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 1.6s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                Heart Rate
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body ">
+                                <div class="row ">
+
+                                    <div class="col-md-10 animated-panel fadeIn " style="animation-delay: 1.7s; ">
+                                        <fusioncharts type="line" datasource="{{myBodyHeartRateDataSource}}" width="400" height="400"></fusioncharts>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row ">
+
+
+                    <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 1.4s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                Respiratory Rate
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body ">
+                                <div class="row ">
+
+                                    <div class="col-md-10 animated-panel fadeIn " style="animation-delay: 1.5s; ">
+                                        <fusioncharts type="line" datasource="{{myRespDataSource}} "></fusioncharts>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 1.6s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                Blood Glucose
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body ">
+                                <div class="row ">
+
+                                    <div class="col-md-10 animated-panel fadeIn " style="animation-delay: 1.5s; ">
+
+                                        <fusioncharts type="line" datasource="{{myBGDataSource}} "></fusioncharts>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+
+
+
+
+                    <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 1.4s; ">
+                        <div class="panel panel-info ">
+                            <div class="panel-heading ">
+                                Body Mass Index
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body ">
+                                <div class="row ">
+
+                                    <div class="col-md-10 animated-panel fadeIn " style="animation-delay: 1.5s; ">
+                                        <fusioncharts type="line" datasource="{{myBMIDataSource}} "></fusioncharts>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        </br>
+        </br>
+        <div class="well">
+
+
+            <div class="row ">
+                <div class="col-lg-6 animated-panel fadeIn" style="animation-delay: 0.4s;">
+                    <div class="row">
+                        <div class="col-lg-6 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                            <div class="hpanel stats" >
+
+                                <div class="panel-body text-center" data-pin-hover="true" style="height: 240px;">
+
+                                    <i class="fa fa-male fa-4x " style="color:cornflowerblue"></i>
+                                    <br/>
+
+                                    <br/>
+                                    <h1 class="m-xs" id="ActivitiesDistance">{{TotalActivities}} Km</h1>
+
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Activities
+                                        </h3>
+                                    </div>
+
+                                    <small>
+                                <span class="pull-centre" id="LastActivityType">- Last Activity : {{LastActivities}}</span>
+                            </small>
+
+                                    <small>
+                                <span class="pull-centre" id="LastActivityDistance"></span>
+                            </small>
+
+                            <br/>
+                            <br/>
+
+
+                                </div>
+                                <div class="panel-footer">
+                                    <a style="color:#31708F;" href="/Activity">View More Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                            <div class="hpanel stats">
+                                <div class="panel-body text-center" style="height:240px">
+                                    <i class="fa fa-pagelines fa-5x text-success" style="color:#64CB33"></i>
+                                    <h2 class="m-xs" id="allergies">{{AllergyData[0]}}</h2>
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Allergies
+                                        </h3>
+                                    </div>
+                                    <span class="font-bold no-margins" id="AllergyFirst">allergy to adhesive bandage</span>
+                                    <small>
+                                    <span class="pull-left" id="SeverityFirst">- Severity: {{AllergyData[2]}} </span>
+                                </small>
+
+                                    <span class="font-bold no-margins" id="AllergySecond">
+
+                                </span>
+
+                                    <small>
+                                    <br><span class="pull-left" id="SeveritySecond"></span>
+                                </small></br>
+                                    <small>
+                                    <span class="pull-left" id="LastAllergyAddedOn">-Added on: {{AllergyData[1]| date: 'dd/MM/yyyy'}}</span>
+                                </small>
+
+                                </div>
+                                <div class="panel-footer">
+                                    <a style="color:#31708F;" href="/Allergy">View More Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 animated-panel fadeIn" style="animation-delay: 0.6s;">
+                            <div class="hpanel stats">
+                                <div class="panel-body text-center" style="height: 240px;">
+                                    <i class="fa fa-line-chart fa-4x text-danger" style="color:chocolate"></i>
+
+                                    <h2 class="m-xs" id="GlucoseLatest">{{BloodGulucoseData[2] }} mg/dl</h2>
+
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Blood Glucose
+                                        </h3>
+                                    </div>
+
+                                    <small>
+                                <span class="pull-centre" id="LastGlucoseCollectionDate">- Last Collection Date: {{BloodGulucoseData[1]| date: 'dd/MM/yyyy' }} </span>
+                            </small>
+
+
+
+
+                                </div>
+                                <div class="panel-footer">
+                                    <a style="color:#31708F;" href="/BloodGulucose">View More Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                            <div class="hpanel">
+
+                                <div class="panel-body text-center" style="height: 240px;">
+
+                                    <i class="fa fa-heart fa-4x text-danger"></i>
+
+                                    <h2 class="m-xs" id="BPLatest"> {{BPData[2] }} mmHg</h2>
+                                   
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Blood Pressure
+                                        </h3>
+                                    </div>
+                                    <small>
+                                <span class="pull-centre" id="LastBpCollectionDate">- Last Collection Date: {{BPData[1]| date: 'dd/MM/yyyy'}}</span>
+                            </small>
+                           
+                            
+                                </div>
+                                <div class="panel-footer">
+                                    <a style="color:#31708F;" href="/BP">View More Details</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 0.4s; ">
+                    <div class="row ">
+                        <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 0.5s;">
+                            <div class="hpanel stats">
+                                <div class="panel-body text-center" style="height: 240px;">
+                                    <i class="fa pe-7s-scissors fa-5x " style="color:dodgerblue "></i>
+                                    <h2 class="m-xs" id="procedures">{{ProcedureData[0] }}</h2>
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Procedures
+                                        </h3>
+                                    </div>
+                                    <span class="font-bold no-margins " id="ProcedureFirst ">{{ProcedureData[2] }}</span>
+                                    <small>
+                                          <span class="pull-left " id="ProcedureStartedOnFirst ">- Done on: {{ProcedureData[1]| date: 'dd/MM/yyyy' }}</span>
+                                        </small>
+
+                                    <span class="font-bold no-margins " id="ProcedureSecond ">
+
+                                           </span>
+
+                                    <small>
+                                         <span class="pull-left " id="ProcedureStartedOnSecond "></span>
+                                          </small>
+
+                                </div>
+                                <div class="panel-footer ">
+                                    <a style="color:#31708F; " href="/Procedure ">View More Details</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 0.5s;">
+                            <div class="hpanel stats">
+                                <div class="panel-body text-center" style="height: 240px;">
+                                    <i class="fa fa-eyedropper fa-4x " style="color:midnightblue;"></i>
+                                    <h2 class="m-xs" id="immunization">{{ImmunizationData[0] }}</h2>
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Immunization
+                                        </h3>
+                                    </div>
+                                    <span class="font-bold no-margins " id="ImmunizationFirst ">{{ImmunizationData[2] }}</span>
+                                    <small>
+                                    <span class="pull-left " id="ImmunizationTakenOnFirst ">- Taken on: {{ImmunizationData[1]| date: 'dd/MM/yyyy' }}</span>
+                                        </small>
+
+                                    <span class="font-bold no-margins " id="ImmunizationSecond ">
+
+                                </span>
+
+                                    <small>
+                                      <span class="pull-left " id="ImmunizationTakenOnSecond "></span>
+                                </small>
+                                </div>
+                                <div class="panel-footer ">
+                                    <a style="color:#31708F; " href="/Immunization ">View More Details</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 0.4s; ">
+                    <div class="row ">
+                        <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 0.5s;">
+                            <div class="hpanel stats">
+                                <div class="panel-body text-center" style="height: 240px;">
+                                    <i class="fa fa-flask fa-5x " style="color:#FFB607 "></i></br>
+                                    <h2 class="m-xs" id="labs">{{LabData[0] }}</h2>
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Lab Test
+                                        </h3>
+                                    </div>
+                                    <span class="font-bold no-margins " id="TestFirst ">{{LabData[2] }}</span>
+                                    <small>
+                                           <span class="pull-left " id="TestPerformedFirst ">- Date Performed:{{LabData[1] | date: 'dd/MM/yyyy'}} </span>
+                                           </small>
+
+                                    <span class="font-bold no-margins " id="TestSecond ">
+
+                                             </span>
+
+                                    <small>
+                                                <span class="pull-left " id="TestPerformedSecond "></span>
+                                            </small>
+
+                                </div>
+                                <div class="panel-footer ">
+                                    <a style="color:#31708F; " href="/Lab ">View More Details</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-lg-6 animated-panel fadeIn " style="animation-delay: 0.5s;">
+                            <div class="hpanel stats">
+                                <div class="panel-body  text-center" style="height: 240px;">
+                                    <i class="fa fa-medkit fa-5x " style="color:darkred "></i></br>
+                                    <h2 class="m-xs" id="medications">{{MedicineData[0] }}</h2>
+                                    <div>
+                                        <h3 class="font-bold no-margins text-success" size="10px">
+                                            Medications
+                                        </h3>
+                                    </div>
+                                    <span class="font-bold no-margins " id="MedicationFirst ">{{MedicineData[2] }}</span>
+                                    <small>
+                                                   <span class="pull-left " id="MedicationStartedOnFirst ">- Prescribed Date: {{MedicineData[1]| date: 'dd/MM/yyyy' }}</span>
+                                                   </small>
+
+                                    <span class="font-bold no-margins " id="MedicationSecond ">
+
+                                          </span>
+
+                                    <small>
+                                                  <span class="pull-left " id="MedicationStartedOnSecond "></span>
+                                               </small>
+                                </div>
+                                <div class="panel-footer ">
+                                    <a style="color:#31708F; " href="/Medication ">View More Details</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <style>
+        .chart-legend ul {
+            list-style: none;
+            color: black;
+        }
+
+        .chart-legend li {
+            display: inline-block;
+        }
+
+        .well {
+
+            border: 2px solid #bec7cc;
+        }
+    </style>
+
+    <script>
+        setTimeout(function () {
+            //Blood Pressure Bar Graph
+
+            // alert(JSON.stringify(BloodPressureGraphData));
+
+            //Activity Pie Graph
+
+            // BMI Line Chart
+
+            // Blood GuluCose Chart
+
+
+        }, 2000);
+    </script>00);
+    </script>
+</div>

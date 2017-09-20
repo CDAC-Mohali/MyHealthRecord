@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>PHRMS | A C-DAC Product</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/vendor/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="assets/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.css" />
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <!-- Angular Scripts -->
+    <script src="assets/vendor/angular/angular.min.js"></script>
+    <script src="assets/vendor/angular/angular-route.min.js"></script>
+    <script src="assets/vendor/angular/angular-animate.min.js"></script>
+
+    <!-- Angular Logic -->
+    <script src="app/loginApp.js"></script>
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+    <style type="text/css" media="print">
+        BODY {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body class="blank" ng-app="phrmsLogin">
+    <div class="container-fluid no-padding hdrbgclr">
+        <div class="col-md-12 col-sm-12 headerhght">
+            <div class="col-md-6 col-sm-6 zeropadmbl">
+                <img src="assets/images/myHealthRecordlogo.png" class="img-responsive " width="42">
+                <a href="/Home/Index">
+                    <img src="assets/images/MyHealthRecord.png" class="img-responsive phrmsrimg">
+                </a>
+            </div>
+            <div class="col-md-6 col-sm-6 righthalf">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="navbar-header hdrnavcustom">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav"></ul>
+                        <ul class="nav navbar-nav navbar-right tabcntr btnsintab" style="display: flex">
+                            <li class="lirghtup lipad">
+                                <img src="assets/images/nationalemblemindia.png" class="img-responsive lionimg" width="42">
+                            </li>
+                            <li class="">
+                                <a href="/login">
+                                    <button class="btn btn-success btn-xs">Sign In</button>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/register">
+                                    <button class="btn btn-primary btn-xs">Sign Up</button>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="http://testcpms.myhealthrecord.nhp.gov.in/login">
+                                    <button class="btn btn-warning btn-xs">Doctor Login</button>
+                                </a>
+                            </li>
+                            <!--<select class="css-select" name="language" id="language" style="height: 18px; margin-top: 25px; font-size: 13px;">
+                                    <option value="english">English</option>
+                                    <option value="hindi">हिन्दी</option>
+                                </select>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Simple splash screen-->
+    <div class="splash">
+        <div class="color-line"></div>
+        <div class="splash-title">
+            <h1>My Health Record</h1>
+            <p> Registration Service. </p><img src="assets/images/loading-bars.svg" width="64" height="64" /> </div>
+    </div>
+    <!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+    <div class="color-line"></div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="col-lg-11 " ng-controller="logOtpCtrl">
+        <div class="lock-container " ng-show="RegStep1">
+            <div class="hpanel col-lg-12">
+                <div class="show-hide-message" ng-show="ErrorMsg">
+                    <div class="alert alert-danger">
+                        {{ErrorMsg}}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form ng-submit="SendOTP()" id="loginForm">
+                        <div class="form-group col-lg-12">
+
+                            <label>Enter valid Mobile No.<span style="color: red;">*</span></label>
+                            <input type="number" maxlength="10" class="form-control" ng-model="Mobile" placeholder="Mobile No.">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <input type="submit" id="SendOTP" class="btn btn-success" value="Next" />
+                            <a class="btn btn-default" href="/login">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="lock-container" ng-show="RegStep2">
+            <div class="col-md-12">
+                <div class="hpanel">
+                    <div class="show-hide-message" ng-show="ErrorMsg2">
+                        <div class="alert alert-danger">
+                            {{ErrorMsg2}}
+                        </div>
+                    </div>
+                    <div class="show-hide-message" ng-show="SuccessMsg">
+                        <div class="alert alert-success">
+                            {{SuccessMsg}}
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form ng-submit="VerifyLoginOTP()" id="loginForm2">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row" style="padding-bottom: 15px;">
+                                        <div class="col-lg-12">
+                                            <div class="text-center" ng-show="Loading">
+                                                <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <label>Enter verification code received on  Mobile <span style="color: red;">*</span></label>
+                                                    <input type="password" value="" id="" class="form-control" ng-model="UOTP" placeholder="OTP">
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="text-right">
+                                                        <button type="submit" class="btn  btn-success" href="#">Submit</button>
+                                                        <a class="btn btn-default" href="/login">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 bgfooter footer">
+        <div class="container">
+
+            <div class="col-md-6 col-sm-6 ftrgap">
+                <div class="row">
+                    <div class="titlefooter"><strong></strong></div>
+
+                    <ul class="ftrlists">
+                        <li>&nbsp;<a class="whitetext" href="http://cdac.in/index.aspx?id=about" target="_blank">About</a> |
+                        </li>
+
+                        <li>&nbsp;<a class="whitetext" href="/FAQS">FAQs</a> | </li>
+
+                        <li>&nbsp;<a class="whitetext" href="/ContactUs">Contact us</a></li>
+                    </ul>
+
+                    <div class="securityfoot">
+                        <ul class="ftrlists">
+                            <!-- <li>&nbsp;<a href="#" target="popup"><img src="files/getseal.png" width="80px"></a> &nbsp; </li>
+                        <li>&nbsp;<img src="files/256sll.png" width="90px">&nbsp; </li>-->
+                            <li>Content Owned, Updated and Maintained by C-DAC Mohali</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 ftrgap">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <p style="color: #CCC; text-align: right; margin-top: 15px;">
+                            Centre For Development of Advanced Computing
+                            <br /> A Scientific Society of the Ministry of Electronics &amp; Information Technology, Government of India.<br /> Copyright 2017 MyHealthRecord. All Rights Reserved
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <p style="vertical-align: middle; margin-top: 25px;">
+                            <img src="assets/images/whitetranscdac.png" class="img-responsive pull-right" width="100">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .phrmsrimg {
+            margin-top: -60px;
+            margin-left: 45px;
+        }
+        
+        .bgsignup_phrms {
+            background-color: #337AB7;
+            color: #FFF;
+        }
+        
+        .bgfooter {
+            background-color: #192B39;
+            color: #FFF;
+        }
+        
+        .headerhght {
+            height: 60px;
+        }
+        
+        .hdrshadow {
+            box-shadow: 0 1px 5px #ccc;
+        }
+        
+        .hdrbgclr {
+            background-color: #fff;
+        }
+        
+        .hdrnavcustom {
+            background-color: #fff;
+            margin-top: -20px;
+            margin-right: -43px;
+            float: right;
+        }
+        
+        .titlefooter {
+            color: #D9D8D8;
+            font-size: 17px;
+            margin-bottom: 14px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        /* Validation */
+        
+        .form-control.error {
+            border-color: #e74c3c !important;
+        }
+        
+        label.error,
+        label span.error {
+            color: #e74c3c;
+            margin: 5px 0 0 0;
+            font-weight: 400;
+        }
+        
+        label span.error {
+            margin-left: 5px;
+        }
+        
+        label.error:before {
+            content: "\f071";
+            font-family: 'FontAwesome';
+            margin: 0 4px;
+        }
+        /*Validation Custom*/
+        
+        .input-validation-error {
+            border-color: #e74c3c !important;
+        }
+        
+        span.field-validation-error {
+            margin-left: 5px;
+            color: #e74c3c;
+            margin: 5px 0 0 0;
+            font-weight: 400;
+        }
+        
+        span.field-validation-error:before {
+            content: "\f071";
+            font-family: 'FontAwesome';
+            margin: 0 4px;
+        }
+        
+        .whitetext {
+            color: #fff !important;
+        }
+        
+        .input-group-addon {
+            width: 1%;
+        }
+        
+        .ftrlists {
+            display: flex !important;
+            list-style: none !important;
+            text-align: center !important;
+        }
+        
+        .panel-body {
+            width: 150%;
+        }
+    </style>
+    <!-- Vendor scripts -->
+    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="assets/vendor/iCheck/icheck.min.js"></script>
+    <script src="assets/vendor/sparkline/index.js"></script>
+
+    <!-- App scripts -->
+    <script src="assets/scripts/homer.js"></script>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Disable cut copy paste
+        // $('body').bind('cut copy paste', function(e) {
+        //     e.preventDefault();
+        // });
+
+        //Disable mouse right click
+        $("body").on("contextmenu", function(e) {
+            return false;
+        });
+        $('body').keydown(function(e) {
+            if (e.ctrlKey &&
+                (e.keyCode === 67 ||
+                    e.keyCode === 65 ||
+                    e.keyCode === 86 ||
+                    e.keyCode === 85 ||
+                    e.keyCode === 117)) {
+                //  alert('not allowed');
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
+</script>

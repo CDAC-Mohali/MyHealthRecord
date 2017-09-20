@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>PHRMS | A C-DAC Product</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/vendor/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="assets/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.css" />
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <!-- Angular Scripts -->
+    <script src="assets/vendor/angular/angular.min.js"></script>
+    <script src="assets/vendor/angular/angular-route.min.js"></script>
+    <script src="assets/vendor/angular/angular-animate.min.js"></script>
+
+    <!-- Angular Logic -->
+    <script src="app/loginApp.js"></script>
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+    <style type="text/css" media="print">
+        BODY {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid no-padding hdrbgclr">
+        <div class="col-md-12 col-sm-12 headerhght">
+            <div class="col-md-6 col-sm-6 zeropadmbl">
+                <img src="assets/images/myHealthRecordlogo.png" class="img-responsive " width="42">
+                <a href="/">
+                    <img src="assets/images/MyHealthRecord.png" class="img-responsive phrmsrimg">
+                </a>
+            </div>
+            <div class="col-md-6 col-sm-6 righthalf">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="navbar-header hdrnavcustom">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav"></ul>
+                        <ul class="nav navbar-nav navbar-right tabcntr btnsintab" style="display: flex">
+                            <li class="lirghtup lipad">
+                                <img src="assets/images/nationalemblemindia.png" class="img-responsive lionimg" width="42">
+                            </li>
+
+                            <li class="lirghtup limargin">
+                                <a href="/login">
+                                            <button class="btn btn-success btn-xs">Sign In</button>
+                                        </a>
+                            </li>
+                            <li class="">
+                                <a href="/aadhaarRegistration">
+                                    <button class="btn btn-primary btn-xs">Sign Up with Aadhar</button>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/register">
+                                    <button class="btn btn-primary btn-xs">Sign Up</button>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="http://practice.myhealthrecord.nhp.gov.in">
+                                    <button class="btn btn-warning btn-xs">Doctor Login</button>
+                                </a>
+                            </li>
+                            <!--<select class="css-select" name="language" id="language" style="height: 18px; margin-top: 25px; font-size: 13px;">
+                                    <option value="english">English</option>
+                                    <option value="hindi">हिन्दी</option>
+                                </select>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="panel-body">
+                <h1 class="font-light m-b-xs text-center">
+                    Frequently Asked Questions
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>Question 1: Who has access to my Personal Health Record?</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body" id="divPanelPersonalInfo">
+                                        <span>
+                                            You can access your PHR anytime .
+                                            Your information is safe and secure, and only you can view it.
+                                            If you would like to make a copy for your records or give a copy to your doctor, simply select the Share button in the upper right hand side of the PHRMS screen and select the doctor with whom you want to share.
+                                            You can also set the time period for which doctor will have access to your records.
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>Question 2: Can I access my PHR through my cell phone?</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+
+                                        <span>
+                                            Yes, it can be accessed.
+                                            Your phone requires Internet.
+                                            Whatever information you store in PHRMS in web version will be reflected in your mobile account and vice-versa.
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading collapsed" role="tab" id="headingThree" style="cursor:pointer" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>Question 3: Why would I want to keep the PHRMS?</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <span>
+                                            Your health information is scattered across many different providers and facilities. Keeping your own complete, updated and easily accessible health record means you can play a more active role in your healthcare. You wouldn’t write checks without keeping a check register.
+                                            The same level of responsibility makes sense for your healthcare.
+                                            A patient’s own PHR offers a different perspective, showing all your health-related information.
+                                            It can include any information that you think affects your health, including information that your doctor may not have, such as your exercise routines, dietary habits, or glucose levels if you are diabetic.
+                                            Also, the PHR is a critical tool that enables you to partner with your providers.
+                                            It can reduce or eliminate duplicate procedures or processes, which saves healthcare dollars, your time, and the provider’s time. And the information you gather gives you knowledge that assists your preparation for appointments.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading collapsed" role="tab" id="headingFour" style="cursor:pointer" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>Question 4: Can I control the sharing of my information with the doctor i.e. I don’t want my doctor to save information, only view should be accessible to him ?</span>
+
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <span>
+                                            Yes. You can specify the time; for which your doctor can see your personal information, while sharing with him.
+                                            The doctor will receive the OTP on phone/mail, with which he will have the access to the reports shared by you for the specified time
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading collapsed" role="tab" id="headingFive" style="cursor:pointer" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>Question 5: Can I save my family members’ health details in my PHR account?</span>
+
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                    <div class="panel-body">
+                                        <span>
+                                            No, it is intended for individual user.
+                                            For single user there will be single account.
+                                            For the other family members different accounts can be created.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading collapsed" role="tab" id="headingSix" style="cursor:pointer" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            Question 6: When accessing my own file, I got an error message and my screen froze.
+                                            What happened? What should I do?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                    <div class="panel-body">
+                                        <span>
+                                            Your login may have expired– log in again.
+                                            For security purposes if your session is inactive for a certain period of time the system will expire your login so you will have to re-enter your username and password to confirm you are still actively using the system.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingSeven" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"
+                                    aria-expanded="true" aria-controls="collapseSeven" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>
+                                                Question 7: Can PHRMS substitute a visit to my clinic?
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                                    <div class="panel-body">
+                                        <span>
+                                            PHRMS is not a substitute for a trip to the clinic.
+                                            PHRMS enables you to have better communication with your clinical providers even when you are not able to see them for an appointment.
+                                            PHRMS can help you save a trip to your doctor’s clinic simply by sharing reports with them.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingEight" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"
+                                    aria-expanded="true" aria-controls="collapseEight" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>
+                                                Question 8: Can I print my Personal Health Record?
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                                    <div class="panel-body">
+                                        <span>
+                                            Yes, you can print your health information by clicking Print Report button on the upper right hand side of the PHRMS screen.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingNine" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"
+                                    aria-expanded="true" aria-controls="collapseNine" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>
+                                                Question 9: Can my family members view my PHR?
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                                    <div class="panel-body">
+                                        <span>
+                                            No, they can only, if they have your credentials.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTen" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"
+                                    aria-expanded="true" aria-controls="collapseTen" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>
+                                                Question 10: What is the maximum size of the document that I can upload to my PHR account?
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+                                    <div class="panel-body">
+                                        <span>
+                                            The total space allotted for uploading documents is ? You can upload any number of documents within that limit.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingEleven" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"
+                                    aria-expanded="true" aria-controls="collapseEleven" style="cursor:pointer">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            <span>
+                                                Question 11: Is there any way to distinguish that which record is entered by clinician or by me in PHR?
+                                            </span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+                                    <div class="panel-body">
+                                        <span>
+                                            Yes, there is separate icon for user and clinician. In the view grid there is “Entered By” column.
+                                            If record is entered by user, icon will be in blue color, else in red color.
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 bgfooter">
+        <div class="container">
+
+            <div class="col-md-6 col-sm-6 ftrgap">
+                <div class="row">
+                    <div class="titlefooter"><strong></strong></div>
+
+                    <ul class="ftrlists">
+                        <li>&nbsp;<a class="whitetext" href="http://cdac.in/index.aspx?id=about" target="_blank">About</a> |
+                            </li>
+
+                        <li>&nbsp;<a class="whitetext" href="/FAQs">FAQs</a> | </li>
+
+                        <li>&nbsp;<a class="whitetext" href="/contact" >Contact us</a></li>
+                    </ul>
+
+                    <div class="securityfoot">
+                        <ul class="ftrlists">
+                            <!-- <li>&nbsp;<a href="#" target="popup"><img src="files/getseal.png" width="80px"></a> &nbsp; </li>
+                                <li>&nbsp;<img src="files/256sll.png" width="90px">&nbsp; </li>-->
+                            <li>Content Owned, Updated and Maintained by C-DAC Mohali</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 ftrgap">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <p style="color: #CCC; text-align: right; margin-top: 15px;">
+                            Centre For Development of Advanced Computing
+                            <br /> A Scientific Society of the Ministry of Electronics &amp; Information Technology, Government
+                            of India.<br /> Copyright 2017 MyHealthRecord. All Rights Reserved
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <p style="vertical-align: middle; margin-top: 25px;">
+                            <a href="http://cdac.in/"> <img src="assets/images/whitetranscdac.png" class="img-responsive pull-right" width="100"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .titlefooter {
+            color: #D9D8D8;
+            font-size: 17px;
+            margin-bottom: 14px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+    </style>
+    </div>
+
+    <style>
+        .phrmsrimg {
+            margin-top: -60px;
+            margin-left: 45px;
+        }
+
+        .bgsignup_phrms {
+            background-color: #337AB7;
+            color: #FFF;
+        }
+
+        .bgfooter {
+            background-color: #192B39;
+            color: #FFF;
+        }
+
+        .headerhght {
+            height: 60px;
+        }
+
+        .hdrshadow {
+            box-shadow: 0 1px 5px #ccc;
+        }
+
+        .hdrbgclr {
+            background-color: #fff;
+        }
+
+        .hdrnavcustom {
+            background-color: #fff;
+            margin-top: -20px;
+            margin-right: -43px;
+            float: right;
+        }
+
+        .titlefooter {
+            color: #D9D8D8;
+            font-size: 17px;
+            margin-bottom: 14px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        /* Validation */
+
+        .form-control.error {
+            border-color: #e74c3c !important;
+        }
+
+        label.error,
+        label span.error {
+            color: #e74c3c;
+            margin: 5px 0 0 0;
+            font-weight: 400;
+        }
+
+        label span.error {
+            margin-left: 5px;
+        }
+
+        label.error:before {
+            content: "\f071";
+            font-family: 'FontAwesome';
+            margin: 0 4px;
+        }
+        /*Validation Custom*/
+
+        .input-validation-error {
+            border-color: #e74c3c !important;
+        }
+
+        span.field-validation-error {
+            margin-left: 5px;
+            color: #e74c3c;
+            margin: 5px 0 0 0;
+            font-weight: 400;
+        }
+
+        span.field-validation-error:before {
+            content: "\f071";
+            font-family: 'FontAwesome';
+            margin: 0 4px;
+        }
+
+        .whitetext {
+            color: #fff !important;
+        }
+
+        .txtwarning {
+            color: #FF3E3E;
+            font-size: 12px;
+        }
+
+        .ftrlists {
+            display: flex !important;
+            list-style: none !important;
+            text-align: center !important;
+        }
+    </style>
+
+    <!-- Vendor scripts -->
+    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="assets/vendor/iCheck/icheck.min.js"></script>
+    <script src="assets/vendor/sparkline/index.js"></script>
+
+    <!-- App scripts -->
+    <script src="assets/scripts/homer.js"></script>
+
+
+</body>
+
+</html>

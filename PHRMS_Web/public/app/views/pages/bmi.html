@@ -1,0 +1,353 @@
+<div class="no-print">
+<div class="normalheader transition animated fadeIn">
+    <div class="hpanel hblue">
+        <div class="panel-body">
+            <div id="hbreadcrumb" class="pull-right">
+                <ol class="hbreadcrumb breadcrumb">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li>
+                        <span>BMI</span>
+                    </li>
+                </ol>
+            </div>
+            <h2 class="font-light m-b-xs">
+                BMI
+            </h2>
+            <div>
+                <small>
+This page makes it easy for you to enter and review information about your weight and height. To add record for weight/height, click 'Add Record' and follow the on-screen instructions. When you are done, the new information will be added to your health record.   <br><br>
+                 
+                </small>
+            </div>
+
+                <div class="row">
+    
+            <div class="text-center">
+                <div class="btn-group">
+                    <button type="button" id="dashbtoday" ng-click="GetBMIGraph(1)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Today</button>
+                    <button type="button" id="dashbweek" ng-click="GetBMIGraph(2)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Week</button>
+                    <button type="button" id="dashbmonth" ng-click="GetBMIGraph(3)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Month</button>
+                    <button type="button" id="dashbyear" ng-click="GetBMIGraph(4)" class="btn" style=" border-color: #bce8f1; background-color: #d9edf7; color: #31708f;">Year</button>
+                </div>
+            </div>
+        
+    </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 animated-panel fadeIn" style="animation-delay: 0.8s;">
+                    <fusioncharts type="line" datasource="{{myBMIDataSource}} "></fusioncharts>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="content transition animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12 animated-panel fadeIn" style="animation-delay: 0.3s;">
+            <div class="hpanel hgreen">
+                <div class="panel-heading">
+                    <div class="panel-tools">
+                    </div>
+                    Please add your BMI details here.
+                </div>
+                <div class="panel-body float-e-margins">
+                    <div class="row">
+                        <div class="col-md-4 animated-panel fadeIn" style="animation-delay: 0.4s;">
+
+                            
+              <small>
+
+                    <span class="fa fa-user fa-lg"></span> - Entered by User &nbsp;&nbsp;<span class="fa fa-apple fa-lg text-info"></span> -  iOS App
+           &nbsp;&nbsp;        <span class="fa fa-android fa-lg text-success"></span> -  Android App
+                </small>
+
+                        </div>
+                        <div class="col-md-8 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                            <!--<div class="pull-right">
+                                <button data-toggle="modal" data-target="#myModal" class="btn btn-info btn-outline " type="button">
+                                    <i class="fa fa-share"></i> Download <span class="caret"></span>
+                                </button>
+                            </div>-->
+                            <span class="pull-right">&nbsp;&nbsp;</span>
+                            <button ng-click="resetModal()" type="button" id="btnAddPlayer" class="btn btn-outline btn-warning2 pull-right" data-toggle="modal" data-target="#addBMIModal">Add Record</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center" ng-show="Loading2">
+                                <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                            </div>
+
+                            <div class="show-hide-message" ng-show="SuccessMsg">
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> {{SuccessMsg}}
+                                </div>
+                            </div>
+                            <div class="show-hide-message" ng-show="SuccessMsg2">
+                                <div class="alert alert-warning">
+                                    <strong>Success!</strong> {{SuccessMsg2}}
+                                </div>
+                            </div>
+                            <div class="show-hide-message" ng-show="ErrorMsg2">
+                                <div class="alert alert-danger">
+                                    <strong>Oops!</strong> {{ErrorMsg2}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="table-responsive">
+                        <div class="gj-grid-wrapper">
+                            <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                <thead>
+                                    <tr>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                            <div style="float: left">S.No.</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 100px; text-align: left;">
+                                            <div style="float: left">Entered By</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 150px; text-align: center;">
+                                            <div style="float: left">Date</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 150px; text-align: center;">
+                                            <div style="float: left">Weight (in Kg)</div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="text-align: left;">
+                                            <div style="float: left">Height (in cm)</div>
+                                        </th>
+
+                                        <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 250px; text-align: left;">
+                                            <div style="float: left">BMI</div>
+                                        </th>
+
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                            <div style="float: left"></div>
+                                        </th>
+                                        <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                            <div style="float: left"></div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                        <td colspan="7"><strong> No BMI Records Available </strong></td>
+                                    </tr>
+                                    <tr ng-repeat="UserBMI in UserBMI | filter:searchUser:false">
+                                        <td style="text-align: left;">
+                                            {{$index + 1}}
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <span class="fa fa-user fa-lg" ng-if="UserBMI.Record.SourceId == 1"></span>
+                                            <span class="fa fa-stethoscope fa-lg" ng-if="UserBMI.Record.SourceId == 2"></span>
+                                            <span class="fa fa-user fa-lg" ng-if="UserBMI.Record.SourceId == 3"></span>
+                                            <span class="fa fa-user fa-lg" ng-if="UserBMI.Record.SourceId == 4"></span>
+                                            <span class="fa fa-apple fa-lg text-info" ng-if="UserBMI.Record.SourceId == 5"></span>
+                                            <span class="fa fa-android fa-lg text-success" ng-if="UserBMI.Record.SourceId == 6"></span>
+                                        </td>
+
+
+                                        <td style="text-align: left;">
+                                            {{UserBMI.Record.strCollectionDate}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{UserBMI.Record.Weight}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{UserBMI.Record.Height}}
+                                        </td>
+
+                                        <td style="text-align: left;">
+                                            {{UserBMI.Record.BMI.toFixed(2)}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            <a href="#" title="View" ng-click="showBMI(UserBMI.Record._id)"><span class="glyphicon glyphicon-eye-open text-info"></span></a>
+                                        </td>
+                                        <td style="text-align: left;">
+                                            <a href="#" title="Delete" ng-click="deleteBMI(UserBMI.Record._id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add BMI Modal -->
+<div class="modal fade hmodal-info" id="addBMIModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Add Details</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center" ng-show="Loading">
+                            <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                        </div>
+                        <div class="show-hide-message" ng-show="ErrorMsg">
+                            <div class="alert alert-danger">
+                                <strong>Oops!</strong> {{ErrorMsg}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="AddForm2">
+                    <div class="row">
+                        <form name="BMIForm2">
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Weight(Kg): <span style="color: red;">*</span></label>
+                                        <input class="form-control" type="number" required ng-model="BMIData.Info.Weight" placeholder="Enter Weight between 0 to 1000 (in KG)" min="0" max="1000"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Height(cm): <span style="color: red;">*</span></label>
+                                        <input class="form-control" type="number" required ng-model="BMIData.Info.Height" placeholder="Enter Height between 0 to 300 (in cm)" min="0" max="300"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">BMI: <span style="color: red;">*</span></label>
+                                        <input class="form-control" type="number" value="{{BMIData.Info.BMI = (BMIData.Info.Weight/((BMIData.Info.Height/100)*(BMIData.Info.Height/100))).toFixed(2)}}" ng-model="BMIData.Info.BMI" readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class=" form-group col-lg-12 ">
+                                <div class="row ">
+                                    <div class="col-lg-12 ">
+                                        <label class="control-label ">Date: <span style="color: red; ">*</span></label><br>
+                                        <input id="datapicker2" required placeholder="dd/mm/yyyy" data-date-end-date="0d" type="text" required="" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="BMIData.Info.strCollectionDate" style="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-lg-12 ">
+                                <div class="row ">
+                                    <div class="col-lg-12 ">
+                                        <label class="control-label ">Comments / Notes:</label>
+                                        <textarea class="form-control " placeholder="Write your Comments here. " ng-model="BMIData.Info.Comments "></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default " data-dismiss="modal">Close</button>
+                <span ng-show="AddForm2 "><button type="button " class="btn btn-success " ng-click="addBMI()" ng-disabled="BMIForm2.$invalid">Add Record</button></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show BMI Modal -->
+
+
+
+
+<div class="modal fade hmodal-info" id="showBMIModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title"> BMI Details</h4>
+
+            </div>
+            <div class="modal-body">
+                <fieldset ng-disabled="showDisable">
+                    <div class="row">
+                        <form name="">
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Weight(Kg): </label>
+                                        <input class="form-control" ng-model="UserBMIData.Record.Weight">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">Height(cm): </label>
+                                        <input class="form-control" ng-model="UserBMIData.Record.Height">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="control-label">BMI: </label>
+                                        <input class="form-control" ng-model="UserBMIData.Record.BMI" readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class=" form-group col-lg-12 ">
+                                <div class="row ">
+                                    <div class="col-lg-12 ">
+                                        <label class="control-label ">Date: </label><br>
+                                        <input id="datapicker2" type="text" required="" class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" ng-model="UserBMIData.Record.strCollectionDate" style="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-lg-12 ">
+                                <div class="row ">
+                                    <div class="col-lg-12 ">
+                                        <label class="control-label ">Comments / Notes:</label>
+                                        <textarea class="form-control " ng-model="UserBMIData.Record.Comments "></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-default " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

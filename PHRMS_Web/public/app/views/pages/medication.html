@@ -1,0 +1,714 @@
+<div class="no-print">
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel horange">
+            <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li>
+                            <span>Medication</span>
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Medication
+                </h2>
+                <div>
+                    <small>
+                    This page makes it easy for you to enter and review information about your medication. 
+                    To add a medication to your record, click 'Add Medicine' and follow the on-screen instructions. 
+                    When you are done, the new information will be added to your health record. <br><br>
+                    <span class="fa fa-user fa-lg"></span> - Entered by User &nbsp;&nbsp;<span class="fa fa-stethoscope fa-lg text-info"></span> - Entered by Doctor
+                </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content transition animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12 animated-panel fadeIn" style="animation-delay: 0.3s;">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                        </div>
+                        Please add your Medication details here.
+                    </div>
+                    <div class="panel-body float-e-margins">
+                        <div class="row">
+                            <div class="col-md-3 animated-panel fadeIn" style="animation-delay: 0.4s;">
+                                <div class="input-group">
+                                    <input type="text" id="search" ng-model="searchUser.Medicine.MedicineName" class="form-control" placeholder="Search Medicine Name">
+                                    <span class="input-group-btn">
+                                    <button type="button" id="btnSearch" class="btn btn-info">Go!</button>
+                                </span>
+                                </div>
+                            </div>
+                            <div class="col-md-9 animated-panel fadeIn" style="animation-delay: 0.5s;">
+                                <!--<div class="pull-right">
+                                <button data-toggle="modal" data-target="#myModal" class="btn btn-info btn-outline " type="button">
+                                    <i class="fa fa-share"></i> Download <span class="caret"></span>
+                                </button>
+                            </div>-->
+                                <span class="pull-right">&nbsp;&nbsp;</span>
+                                <button ng-click="resetModal()" type="button" id="btnAddPlayer" class="btn btn-outline btn-warning2 pull-right" data-toggle="modal" data-target="#addMedicineModal">Add Medicine</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center" ng-show="Loading2">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg">
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{SuccessMsg}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="SuccessMsg2">
+                                    <div class="alert alert-warning">
+                                        <strong>Success!</strong> {{SuccessMsg2}}
+                                    </div>
+                                </div>
+                                <div class="show-hide-message" ng-show="ErrorMsg2">
+                                    <div class="alert alert-danger">
+                                        <strong>Oops!</strong> {{ErrorMsg2}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="table-responsive">
+                            <div class="gj-grid-wrapper">
+                                <table id="grid" class="footable table table-bordered table-hover gj-grid-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 50px; text-align: left;">
+                                                <div style="float: left">S.No.</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 25px; text-align: center;">
+                                                <div style="float: left">Entered By</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 50px; text-align: left;">
+                                                <div style="float: left">Prescribed Date</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 200px; text-align: left;">
+                                                <div style="float: left">Medicine Name</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell gj-grid-thead-sortable" style="width: 100px; text-align: left;">
+                                                <div style="float: left">Still Taking?</div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                            <th class="gj-grid-bootstrap-thead-cell" style="width: 34px; text-align: left;">
+                                                <div style="float: left"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-show="emptyList" class="text-center" style="background-color: ghostwhite;">
+                                            <td colspan="7"><strong> No Medication Records Available </strong></td>
+                                        </tr>
+                                        <tr ng-repeat="UserMedication in UserMedications | filter:searchUser:false">
+                                            <td style="text-align: left;">
+                                                {{$index + 1}}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="fa fa-user fa-lg" ng-if="UserMedication.SourceId == 1"></span>
+                                                <span class="fa fa-stethoscope fa-lg" ng-if="UserMedication.SourceId == 2"></span>
+                                                <span class="fa fa-user fa-lg" ng-if="UserMedication.SourceId == 3"></span>
+                                                <span class="fa fa-user fa-lg" ng-if="UserMedication.SourceId == 4"></span>
+                                            </td>
+                                            <!--<td style="text-align: center;">
+                                            <span class="fa fa-user fa-lg"></span>
+                                        </td>-->
+                                            <td style="text-align: left;">
+                                                {{UserMedication.strDatePrescribed}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserMedication.Medicine.MedicineName}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                {{UserMedication.StillHave}}
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="View" ng-click="showMedicine(UserMedication._id)"><span class="glyphicon glyphicon-eye-open text-info"></span></a>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <a href="#" title="Delete" ng-click="deleteMedicine(UserMedication._id,UserMedication.Medicine.MedicineName)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Medicine Modal -->
+    <div class="modal fade hmodal-info" id="addMedicineModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Medicine</h4>
+                    <small class="font-bold">You can add a new medicine in your profile by filling the form below.</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center" ng-show="Loading">
+                                <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                            </div>
+                            <div class="show-hide-message" ng-show="ErrorMsg">
+                                <div class="alert alert-danger">
+                                    <strong>Oops!</strong> {{ErrorMsg}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="AddForm1">
+                        <div class="input-group">
+
+                            <input class="form-control" ng-model="searchText" placeholder="Search Medication" type="search" ng-change="searchMedi()" />
+                            <span class="input-group-addon">
+
+      <span class="glyphicon glyphicon-search"></span>
+
+                            </span>
+
+
+
+                        </div>
+                        <div class="text-center">
+                            <form name="medicineForm1">
+                                <ul class="pagination" style="margin-bottom: 0px;" ng-show="PageOrder1">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-click="getList('a',0)" href="#">A</a></li>
+                                    <li><a ng-click="getList('b',0)" href="#">B</a></li>
+                                    <li><a ng-click="getList('c',0)" href="#">C</a></li>
+                                    <li><a ng-click="getList('d',0)" href="#">D</a></li>
+                                    <li><a ng-click="getList('e',0)" href="#">E</a></li>
+                                    <li><a ng-click="getList('f',0)" href="#">F</a></li>
+                                    <li><a ng-click="getList('g',0)" href="#">G</a></li>
+                                    <li><a ng-click="getList('h',0)" href="#">H</a></li>
+                                    <li><a ng-click="getList('i',0)" href="#">I</a></li>
+                                    <li><a ng-click="getList('j',0)" href="#">J</a></li>
+                                    <li><a ng-click="getList('k',0)" href="#">K</a></li>
+                                    <li><a ng-click="getList('l',0)" href="#">L</a></li>
+                                    <li><a ng-click="getList('m',0)" href="#">M</a></li>
+                                    <li>
+                                        <a ng-click="showNextPage()" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pagination" style="margin-bottom: 0px;" ng-show="PageOrder2">
+                                    <li>
+                                        <a ng-click="showPrevPage()" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-click="getList('n',0)" href="#">N</a></li>
+                                    <li><a ng-click="getList('o',0)" href="#">O</a></li>
+                                    <li><a ng-click="getList('p',0)" href="#">P</a></li>
+                                    <li><a ng-click="getList('q',0)" href="#">Q</a></li>
+                                    <li><a ng-click="getList('r',0)" href="#">R</a></li>
+                                    <li><a ng-click="getList('s',0)" href="#">S</a></li>
+                                    <li><a ng-click="getList('t',0)" href="#">T</a></li>
+                                    <li><a ng-click="getList('u',0)" href="#">U</a></li>
+                                    <li><a ng-click="getList('v',0)" href="#">V</a></li>
+                                    <li><a ng-click="getList('w',0)" href="#">W</a></li>
+                                    <li><a ng-click="getList('x',0)" href="#">X</a></li>
+                                    <li><a ng-click="getList('y',0)" href="#">Y</a></li>
+                                    <li><a ng-click="getList('z',0)" href="#">Z</a></li>
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="text-center" ng-show="ListLoader">
+                                    <img src="assets/images/loading-bars.svg" width="64" height="64" />
+                                </div>
+                                <select ng-show="List" ng-options="Medicine as Medicine.MedicineName for Medicine in MedicationList  | filter:search:false" size="12" class="form-control" ng-model="MedicineData.Info.Medicine" required>
+                        <option value="" selected="selected">Choose One</option>
+                    </select>
+                                <button class="btn btn-default" ng-click="getList(SelectedAlphabet, subPageNo+1)">Next </button>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div ng-show="AddForm2">
+                        <div class="row">
+                            <form name="medicineForm2">
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Medicine Name: <span style="color: red;">*</span></label>
+                                            <input class="form-control" ng-model="MedicineData.Info.Medicine.MedicineName" readonly>
+                                            <input class="form-control" type="hidden" ng-model="MedicineData.Info.Medicine.Id" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Are you taking this medication now?<span style="color: red;">*</span></label><br />
+                                            <input type="radio" id="rdoStillHaveYes" value="Yes" ng-model="MedicineData.Info.StillHave" checked="checked">
+                                            <label for="rdoStillHaveYes" style="margin-right: 12px;"> Yes </label>
+                                            <input type="radio" id="rdoStillHaveNo" value="No" ng-model="MedicineData.Info.StillHave">
+                                            <label for="rdoStillHaveNo"> No </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Date First Prescribed: <span style="color: red;">*</span></label>
+                                            <div class="input-group">
+                                                <input id="datapicker2" placeholder="dd/mm/yyyy" data-date-end-date="0d" type="text" required class="form-control" ng-model="MedicineData.Info.strDatePrescribed" />
+                                                <label class="input-group-addon btn" for="date"><span><i class="glyphicon glyphicon-th dateimage" ></i></span></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Route:<span style="color: red;">*</span></label>
+                                            <select class="form-control" required ng-model="MedicineData.Info.Route">
+                                            <option value="" selected="selected">Choose One</option>
+                                            <option value="By mouth">By mouth</option>
+                                            <option value="To eyes">To eyes</option>
+                                            <option value="To skin">To skin</option>
+                                            <option value="To ears">To ears</option>
+                                            <option value="To nose">To nose</option>
+                                            <option value="Into the muscle">Into the muscle</option>
+                                            <option value="Injection">Injection</option>
+                                            <option value="Inhaled">Inhaled</option>
+                                            <option value="To mucous membrane">To mucous membrane</option>
+                                            <option value="Intravenous">Intravenous</option>
+                                            <option value="Into a joint">Into a joint</option>
+                                            <option value="To vagina">To vagina</option>
+                                            <option value="Into the skin">Into the skin</option>
+                                            <option value="Rectal">Rectal</option>
+                                            <option value="Implant">Implant</option>
+                                            <option value="Under the tongue">Under the tongue</option>
+                                            <option value="Hemodialysis">Hemodialysis</option>
+                                            <option value="Epidural">Epidural</option>
+                                            <option value="Into an artery">Into an artery</option>
+                                            <option value="Into the eye">Into the eye</option>
+                                            <option value="Into the bladder">Into the bladder</option>
+                                            <option value="Into the uterus">Into the uterus</option>
+                                            <option value="To tongue">To tongue</option>
+                                            <option value="To urethra">To urethra</option>
+                                            <option value="Into the trachea">Into the trachea</option>
+                                            <option value="To inner cheek">To inner cheek</option>
+                                            <option value="Dental">Dental</option>
+                                            <option value="Into the penis">Into the penis</option>
+                                            <option value="Into the peritoneum">Into the peritoneum</option>
+                                            <option value="Irrigation">Irrigation</option>
+                                            <option value="Intrathecal">Intrathecal</option>
+                                            <option value="Into the pleura">Into the pleura</option>
+                                            <option value="In Vitro">In Vitro</option>
+                                            <option value="Misc">Misc</option>
+                                            <option value="Perfusion">Perfusion</option>
+                                            <option value="Combination">Combination</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Strength:<span style="color: red;">*</span></label>
+                                            <input class="form-control" placeholder="in mg/ml" required ng-model="MedicineData.Info.Strength">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Dosage:<span style="color: red;">*</span></label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <select class="form-control" required ng-model="MedicineData.Info.Dosage.Quant">
+                                                    <option value="" selected="selected">Choose One</option>
+                                                    <option value="1/4">1/4</option>
+                                                    <option value="1/2">1/2</option>
+                                                    <option value="1">1</option>
+                                                    <option value="1 1/2">1 1/2</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <select class="form-control" ng-model="MedicineData.Info.Dosage.Type">
+                                                    <option value="" selected="selected">Choose One</option>
+                                                    <option value="tablet(s)">tablet(s)</option>
+                                                    <option value="drop(s)">drop(s)</option>
+                                                    <option value="capsule(s)">capsule(s)</option>
+                                                    <option value="tsp(s)">tsp(s)</option>
+                                                    <option value="tbsp(s)">tbsp(s)</option>
+                                                    <option value="puff(s)">puff(s)</option>
+                                                    <option value="application(s)">application(s)</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Frequency Taken:<span style="color: red;">*</span></label>
+                                            <select class="form-control" required ng-model="MedicineData.Info.Frequency">
+                                            <option value="" selected="selected">Choose One</option>
+                                            <option value="1 time per day">1 time per day</option>
+                                            <option value="1 time per day in the morning">1 time per day in the morning</option>
+                                            <option value="1 time per day in the evening">1 time per day in the evening</option>
+                                            <option value="1 time per day at bedtime">1 time per day at bedtime</option>
+                                            <option value="2 times per day">2 times per day</option>
+                                            <option value="3 times per day">3 times per day</option>
+                                            <option value="4 times per day">4 times per day</option>
+                                            <option value="Every hour">Every hour</option>
+                                            <option value="Every 2 hours">Every 2 hours</option>
+                                            <option value="Every 3 hours">Every 3 hours</option>
+                                            <option value="Every 4 hours">Every 4 hours</option>
+                                            <option value="Every 6 hours">Every 6 hours</option>
+                                            <option value="Every 8 hours">Every 8 hours</option>
+                                            <option value="Every 12 hours">Every 12 hours</option>
+                                            <option value="Every 24 hours">Every 24 hours</option>
+                                            <option value="Every other day">Every other day</option>
+                                            <option value="1 time per week">1 time per week</option>
+                                            <option value="Every two weeks">Every two weeks</option>
+                                            <option value="Every 28 days">Every 28 days</option>
+                                            <option value="Every 30 days">Every 30 days</option>
+                                            <option value="As needed">As needed</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Label Instructions:</label>
+                                            <textarea class="form-control" placeholder="Instructions" ng-model="MedicineData.Info.Label"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Document:</span></label>
+                                            <input type='file' placeholder="Upload Summary" class="form-control" ng-model='MedicineData.Info.File' base-sixty-four-input>
+                                            <p id="fileName"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12" style="text-align:center;">
+                                            <strong>OR</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12" style="text-align:center;">
+                                            <div class="share_fm_dl_sm" id="attachment_poi"></div>
+                                            <input type="hidden" name="path" id="path" ng-model="LabData.info.path" ng-value="path" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Notes:</label>
+                                            <textarea class="form-control" placeholder="Some Notes" ng-model="MedicineData.Info.Notes"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <span ng-show="AddForm1"><button type="button" class="btn btn-primary" ng-click="showNextForm()" ng-disabled="medicineForm1.$invalid">Next</button></span>
+                    <span ng-show="AddForm2"><button type="button" class="btn btn-success" ng-click="addMedicine()">Add Medicine</button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show Medicine Modal -->
+    <div class="modal fade hmodal-info" id="showMedicineModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Medicine Details</h4>
+                    <!-- <small class="font-bold">You can see an medicine in your profile by selecting it form the table.</small> -->
+                </div>
+                <div class="modal-body">
+                    <fieldset ng-disabled="showDisable">
+                        <div class="row">
+                            <form name="medicineForm2">
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Medicine Name:</span></label>
+                                            <input class="form-control" ng-model="UserMedicineData.Medicine.MedicineName" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Are you taking this medication now?<span style="color: red;">*</span></label><br />
+                                            <input type="radio" id="rdoStillHaveYes" value="Yes" ng-model="UserMedicineData.StillHave">
+                                            <label for="rdoStillHaveYes" style="margin-right: 12px;"> Yes </label>
+                                            <input type="radio" id="rdoStillHaveNo" value="No" ng-model="UserMedicineData.StillHave">
+                                            <label for="rdoStillHaveNo"> No </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Date First Prescribed: <span style="color: red;">*</span></label><br/>
+                                            <div class="input-group">
+                                                <input id="datapicker2" placeholder="dd/mm/yyyy" type="text" required class="form-control" ng-model="UserMedicineData.strDatePrescribed" /> <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Route: <span style="color: red;">*</span></label>
+                                            <select class="form-control" ng-model="UserMedicineData.Route">
+                                            <option value="" selected="selected">Choose One</option>
+                                            <option value="By mouth">By mouth</option>
+                                            <option value="To eyes">To eyes</option>
+                                            <option value="To skin">To skin</option>
+                                            <option value="To ears">To ears</option>
+                                            <option value="To nose">To nose</option>
+                                            <option value="Into the muscle">Into the muscle</option>
+                                            <option value="Injection">Injection</option>
+                                            <option value="Inhaled">Inhaled</option>
+                                            <option value="To mucous membrane">To mucous membrane</option>
+                                            <option value="Intravenous">Intravenous</option>
+                                            <option value="Into a joint">Into a joint</option>
+                                            <option value="To vagina">To vagina</option>
+                                            <option value="Into the skin">Into the skin</option>
+                                            <option value="Rectal">Rectal</option>
+                                            <option value="Implant">Implant</option>
+                                            <option value="Under the tongue">Under the tongue</option>
+                                            <option value="Hemodialysis">Hemodialysis</option>
+                                            <option value="Epidural">Epidural</option>
+                                            <option value="Into an artery">Into an artery</option>
+                                            <option value="Into the eye">Into the eye</option>
+                                            <option value="Into the bladder">Into the bladder</option>
+                                            <option value="Into the uterus">Into the uterus</option>
+                                            <option value="To tongue">To tongue</option>
+                                            <option value="To urethra">To urethra</option>
+                                            <option value="Into the trachea">Into the trachea</option>
+                                            <option value="To inner cheek">To inner cheek</option>
+                                            <option value="Dental">Dental</option>
+                                            <option value="Into the penis">Into the penis</option>
+                                            <option value="Into the peritoneum">Into the peritoneum</option>
+                                            <option value="Irrigation">Irrigation</option>
+                                            <option value="Intrathecal">Intrathecal</option>
+                                            <option value="Into the pleura">Into the pleura</option>
+                                            <option value="In Vitro">In Vitro</option>
+                                            <option value="Misc">Misc</option>
+                                            <option value="Perfusion">Perfusion</option>
+                                            <option value="Combination">Combination</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Strength: <span style="color: red;">*</span></label>
+                                            <input class="form-control" placeholder="in mg/ml" ng-model="UserMedicineData.Strength">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Dosage: <span style="color: red;">*</span></label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <select class="form-control" ng-model="UserMedicineData.Dosage.Quant">
+                                                    <option value="" selected="selected">Choose One</option>
+                                                    <option value="1/4">1/4</option>
+                                                    <option value="1/2">1/2</option>
+                                                    <option value="1">1</option>
+                                                    <option value="1 1/2">1 1/2</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <select class="form-control" required ng-model="UserMedicineData.Dosage.Type">
+                                                    <option value="" selected="selected">Choose One</option>
+                                                    <option value="tablet(s)">tablet(s)</option>
+                                                    <option value="drop(s)">drop(s)</option>
+                                                    <option value="capsule(s)">capsule(s)</option>
+                                                    <option value="tsp(s)">tsp(s)</option>
+                                                    <option value="tbsp(s)">tbsp(s)</option>
+                                                    <option value="puff(s)">puff(s)</option>
+                                                    <option value="application(s)">application(s)</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Frequency Taken:<span style="color: red;">*</span></label>
+                                            <select class="form-control" ng-model="UserMedicineData.Frequency">
+                                            <option value="" selected="selected">Choose One</option>
+                                            <option value="1 time per day">1 time per day</option>
+                                            <option value="1 time per day in the morning">1 time per day in the morning</option>
+                                            <option value="1 time per day in the evening">1 time per day in the evening</option>
+                                            <option value="1 time per day at bedtime">1 time per day at bedtime</option>
+                                            <option value="2 times per day">2 times per day</option>
+                                            <option value="3 times per day">3 times per day</option>
+                                            <option value="4 times per day">4 times per day</option>
+                                            <option value="Every hour">Every hour</option>
+                                            <option value="Every 2 hours">Every 2 hours</option>
+                                            <option value="Every 3 hours">Every 3 hours</option>
+                                            <option value="Every 4 hours">Every 4 hours</option>
+                                            <option value="Every 6 hours">Every 6 hours</option>
+                                            <option value="Every 8 hours">Every 8 hours</option>
+                                            <option value="Every 12 hours">Every 12 hours</option>
+                                            <option value="Every 24 hours">Every 24 hours</option>
+                                            <option value="Every other day">Every other day</option>
+                                            <option value="1 time per week">1 time per week</option>
+                                            <option value="Every two weeks">Every two weeks</option>
+                                            <option value="Every 28 days">Every 28 days</option>
+                                            <option value="Every 30 days">Every 30 days</option>
+                                            <option value="As needed">As needed</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Label Instructions:</label>
+                                            <textarea class="form-control" placeholder="Instructions" ng-model="UserMedicineData.Label"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12" ng-show="UserMedicineData.FileFlag">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="control-label">Uploaded Doc:</label>
+                                            <p>
+                                                <a ng-show="ShowPdfFile" href="{{UserMedicineData.FilePath}}" target="_blank" class="fa fa-file-pdf-o" style="font-size:48px;color:red"></a>
+                                                <a ng-show="ShowImageFile" ng-click="openLightboxModal(0)">
+                                                    <img ng-src="{{UserMedicineData.FilePath}}" class="img-thumbnail" width="100" height="100">
+                                                </a>
+
+
+                                            </p>
+                                            <div id="divDigi">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group col-lg-12 ">
+                                    <div class="row ">
+                                        <div class="col-lg-12 ">
+                                            <label class="control-label ">Notes:</label>
+                                            <textarea class="form-control " placeholder="Some Notes " ng-model="UserMedicineData.Notes "></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function SetTimeStamp() {
+            var body = document.getElementsByTagName('body')[0];
+            var scriptFetch = document.createElement('script');
+            //alert(Date.now());
+            var timestamp = Date.now().toString().substring(0, 10);
+            var hash_string = "Enter yor digi locker api key" + timestamp;
+            hash_string = sha256_digest(hash_string);
+            scriptFetch.type = 'text/javascript';
+            scriptFetch.src = "https://services.digitallocker.gov.in/requester/api/1/dl.js";
+            scriptFetch.id = "dlshare";
+            scriptFetch.setAttribute('data-app-id', 'Enter yor digi locker api key');
+            scriptFetch.setAttribute('data-app-hash', hash_string);
+
+            scriptFetch.setAttribute('data-upload-url', "/api/account/UploadMedicineDigilockerFile");
+            scriptFetch.setAttribute("time-stamp", timestamp);
+            body.appendChild(scriptFetch);
+            //  alert(timestamp);
+            var scriptSave = document.createElement('script');
+            scriptSave.type = 'text/javascript';
+            scriptSave.src = "https://services.digitallocker.gov.in/savelocker/api/1/savelocker.js";
+            scriptSave.id = "dlshare";
+            scriptSave.setAttribute('data-app-id', 'Enter yor digi locker api key');
+            scriptSave.setAttribute('data-app-hash', hash_string);
+            scriptSave.setAttribute("time-stamp", timestamp);
+            body.appendChild(scriptSave);
+        }
+        SetTimeStamp();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.dateimage').click(function(event) {
+                event.preventDefault();
+                $('#datapicker2').focus();
+            });
+        });
+    </script>
+</div>

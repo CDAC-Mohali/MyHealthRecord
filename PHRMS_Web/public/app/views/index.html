@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>My Health Record</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/vendor/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="assets/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/vendor/toastr/build/toastr.min.css" />
+    <link rel="stylesheet" href="assets/vendor/sweetalert/lib/sweet-alert.css" />
+    <link rel="stylesheet" href="assets/vendor/radios-to-slider/css/radios-to-slider.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+    <!-- App styles -->
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css">
+    <style>
+        .badge-notify {
+            background: #4CAF50;
+            position: relative;
+            bottom: -10px;
+            right: -10px;
+            font-size: 10px;
+        }
+    </style>
+    <style type="text/css" media="print">
+        .no-print {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+    <!-- JQuery Scripts -->
+    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/jquery-flot/jquery.flot.js"></script>
+    <script src="assets/vendor/jquery-flot/jquery.flot.resize.js"></script>
+    <script src="assets/vendor/jquery-flot/jquery.flot.pie.js"></script>
+    <script src="assets/vendor/flot.curvedlines/curvedLines.js"></script>
+    <script src="assets/vendor/jquery.flot.spline/index.js"></script>
+    <script src="assets/vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="assets/vendor/iCheck/icheck.min.js"></script>
+    <script src="assets/vendor/peity/jquery.peity.min.js"></script>
+    <script src="assets/vendor/sparkline/index.js"></script>
+    <script src="assets/vendor/toastr/build/toastr.min.js"></script>
+    <script src="assets/vendor/sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="assets/vendor/radios-to-slider/js/jquery.radios-to-slider.min.js"></script>
+    <script src="assets/vendor/xportability/plugin.js"></script>
+    <script src="assets/sha256/sha256.js"></script>
+    <script src="dist/sweetalert.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="assets/scripts/homer.js"></script>
+    <!--<script src="assets/scripts/charts.js"></script>-->
+    <!--<script src="assets/vendor/chartjs/Chart.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+    <!-- Angular Scripts -->
+    <script src="assets/vendor/angular/angular.min.js"></script>
+    <script src="assets/vendor/angular/angular-route.min.js"></script>
+    <script src="assets/vendor/angular/angular-animate.min.js"></script>
+    <script src="assets/vendor/angular-download/angular-download.js"></script>
+    <script src="assets/vendor/angular-upload/angular-upload.js"></script>
+    <script src="assets/vendor/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="assets/vendor/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="assets/vendor/angular-radios-to-slider/src/radioSlider.js"></script>
+    <script src="assets/angular-bootstrap-lightbox/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="assets/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
+    <script type="text/javascript" src="assets/fusioncharts/fusioncharts.js"></script>
+    <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+    <script src="assets/angular-save-html-to-pdf/dist/jspdf.debug.js"></script>
+    <script src="assets/angular-save-html-to-pdf/dist/saveHtmlToPdf.js"></script>
+    <!-- FusionCharts AngularJS Chart Plugin -->
+    <script type="text/javascript" src="assets/fusioncharts/angular-fusioncharts.js"></script>
+
+    <!-- Angular Logic -->
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //Disable cut copy paste
+            // $('body').bind('cut copy paste', function(e) {
+            //     e.preventDefault();
+            // });
+
+            // Disable mouse right click
+            $("body").on("contextmenu", function(e) {
+                return false;
+            });
+            $('body').keydown(function(e) {
+                if (e.ctrlKey &&
+                    (e.keyCode === 67 ||
+                        e.keyCode === 65 ||
+                        e.keyCode === 86 ||
+                        e.keyCode === 85 ||
+                        e.keyCode === 117)) {
+                    //  alert('not allowed');
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            jQuery(document).bind("keyup keydown", function(e) {
+                if (e.ctrlKey && e.keyCode == 80) {
+                    return false;
+                }
+            });
+            var mouseDown = false;
+            // $('body').on('mousedown touchstart', function(event) {
+            //     event.preventDefault();
+            //     mouseDown = true;
+            // });
+            // $('body').on('mousemove touchmove', function(event) {
+            //     event.preventDefault();
+            //     if (mouseDown) {
+            //         // Do something here.
+            //     }
+            // });
+            // $('body').on('mouseup touchend', function(event) {
+            //     // Capture this event anywhere in the document, since the mouse may leave our element while mouse is down and then the 'up' event will not fire within the element.
+            //     mouseDown = false;
+            // });
+        });
+    </script>
+    <!-- Angular Controllers -->
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/profileCtrl.js"></script>
+    <script src="app/controllers/allergyCtrl.js"></script>
+    <script src="app/controllers/conditionCtrl.js"></script>
+    <script src="app/controllers/immunizationCtrl.js"></script>
+    <script src="app/controllers/procedureCtrl.js"></script>
+    <script src="app/controllers/labCtrl.js"></script>
+    <script src="app/controllers/eprescriptionCtrl.js"></script>
+    <script src="app/controllers/medicationCtrl.js"></script>
+    <script src="app/controllers/contactsCtrl.js"></script>
+    <script src="app/controllers/activityCtrl.js"></script>
+    <script src="app/controllers/bpCtrl.js"></script>
+    <script src="app/controllers/bloodgulucoseCtrl.js"></script>
+    <script src="app/controllers/bmiCtrl.js"></script>
+    <script src="app/controllers/dashboardCtrl.js"></script>
+    <script src="app/controllers/shareCtrl.js"></script>
+    <script src="app/controllers/audittrailCtrl.js"></script>
+    <script src="app/controllers/vitalCtrl.js"></script>
+    <script src="app/controllers/reportCtrl.js"></script>
+    <!-- Angular Services -->
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/allergyServices.js"></script>
+    <script src="app/services/conditionServices.js"></script>
+    <script src="app/services/immunizationServices.js"></script>
+    <script src="app/services/procedureServices.js"></script>
+    <script src="app/services/labServices.js"></script>
+    <script src="app/services/eprescriptionServices.js"></script>
+    <script src="app/services/medicationServices.js"></script>
+    <script src="app/services/contactsServices.js"></script>
+    <script src="app/services/activityServices.js"></script>
+    <script src="app/services/bpServices.js"></script>
+    <script src="app/services/bloodgulucoseServices.js"></script>
+    <script src="app/services/bmiServices.js"></script>
+    <script src="app/services/dashboardServices.js"></script>
+    <script src="app/services/shareServices.js"></script>
+    <script src="app/services/auditServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+    <script src="app/services/notificationServices.js"></script>
+    <script src="app/services/vitalServices.js"></script>
+</head>
+
+<body ng-app="phrms" ng-controller="mainCtrl" class="fixed-footer sidebar-scroll">
+
+    <!-- Simple splash screen-->
+    <div class="splash">
+        <!--<div class="color-line"></div>-->
+        <div class="splash-title">
+            <h1>PHRMS v2.0</h1>
+            <p>Logging you In and Generating Tokens ...</p><img src="assets/images/loading-bars.svg" width="64" height="64" /> </div>
+    </div>
+    <!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+    <!-- Header -->
+    <div id="header" class="no-print">
+        <div class="color-line">
+        </div>
+        <div id="logo" class="light-version">
+            <span>
+            My Health Record
+        </span>
+        </div>
+        <nav role="navigation">
+            <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+            <div class="small-logo">
+                <span class="text-primary">My Health Record</span>
+            </div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav no-borders">
+                    <li class="dropdown notifDrop" ng-click="readNotifs()">
+                        <a class="dropdown-toggle" href="#" title="Notification" data-toggle="dropdown">
+                            <span class="badge badge-notify">{{NotifLength}}</span>
+                            <i class="fa fa-bell-o"></i>
+                        </a>
+                        <ul class="dropdown-menu hdropdown notification animated flipInX">
+                            <li ng-repeat="Notif in Notifs">
+                                <a href="/History">
+                                    <span class="label label-warning" ng-if="Notif.ReadNotification == true">Read</span> <span class="label label-success" ng-if="Notif.ReplyNotification == true">Responded</span> by <b> {{Notif.Contact.Name}}</b>.<br />
+                                    <small class="pull-right" style="margin-top: 5px;">{{Notif.strCreatedDate}}</small>
+                                    <br />
+                                </a>
+                            </li>
+                            <li ng-show="zeroNotif" class="summary"><a href="#">No New Notifications</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" id="sidebar" ng-click="readActivtes()" class="right-sidebar-toggle" title="Audit Trail">
+                            <i class="pe-7s-upload pe-7s-news-paper"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/MedicalContacts" title="Your Medical Contacts">
+                            <i class="fa fa-user-md"></i>
+                        </a>
+                    </li>
+                    <!-- <li>
+                            <a href="http://ors.gov.in/copp/appointment.jsp?ln=0" target="_blank" title="Online Registration System">
+                                <i class="fa fa-book"></i>
+                            </a>
+                        </li> -->
+                    <li>
+                        <a href="/Feedback" title="Give us Feedback">
+                            <i class="fa fa-comments-o"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/ChangePassword" title="Change Password">
+                            <i class="fa fa-lock"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" ng-click="doLogout()" title="Logout">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Navigation -->
+    <aside id="menu" class="no-print">
+        <div id="navigation">
+            <div class="profile-picture">
+                <center>
+                    <a>
+                        <img ng-src="{{u_pic}}" class="img-circle m-b img-responsive" alt="Profile Image">
+                    </a>
+                    <a href="/ChangePicture">
+                        <span class="text-info">Change Picture</span>
+                    </a>
+                    <div class="stats-label text-color">
+
+                        <span class="font-extra-bold font-uppercase">{{u_name}}</span>
+                    </div>
+                </center>
+            </div>
+
+            <ul class="nav" id="side-menu">
+                <li ng-class="{active:isActive('/dashboard')}">
+                    <a href="/dashboard" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-dashboard" style="color:#34495e;"></i> Dashboard</span> </a>
+                </li>
+                <li ng-class="{active:isActive('/Profile')}">
+                    <a href="/Profile" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-user" style="color:#9b59b6;"></i> Profile</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Allergy')}">
+                    <a href="/Allergy" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-pagelines" style="color:#3498db;"></i> Allergies</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Condition')}">
+                    <a href="/Condition" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-stethoscope" style="color:#ffb606;"></i> Problems</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Immunization')}">
+                    <a href="/Immunization" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-eyedropper" style="color:#e67e22;"></i> Immunization</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Procedure')}">
+                    <a href="/Procedure" onclick="scrolltop();"> <span class="nav-label"><i class="fa pe-7s-scissors" style="color:#34495e;"></i> Procedures</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Lab')}">
+                    <a href="/Lab" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-flask" style="color:#9b59b6;"></i> Lab Tests</span></a>
+                </li>
+                <li ng-class="{active:isActive('/ePrescription')}">
+                    <a href="/ePrescription" onclick="scrolltop();"> <span class="nav-label"><i class="pe-7s-note2" style="color:#62cb31;"></i> Prescriptions</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Medication')}">
+                    <a href="/Medication" onclick="scrolltop();"> <span class="nav-label"><i class="pe-7s-note2" style="color:#c0392b;"></i> Medication</span></a>
+                </li>
+                <li ng-class="{active:isActive('/Activity')}">
+                    <a href="/Activity" onclick="scrolltop();"> <span class="nav-label"><img src="assets/images/activity.png" height="15" width="15"></i> Activity</span></a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-label"><i class="fa fa-heart" style="color:#3498db;"></i> Vitals</span>
+                        <span class="fa arrow"></span>
+                    </a>
+
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                        <li ng-class="{active:isActive('/BP')}">
+
+                            <a href="/BP" onclick="scrolltop();"> <span class="nav-label">  <img src="assets/images/bloodpressure.png" height="15" width="15"> Blood Pressure</span></a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                        <li ng-class="{active:isActive('/BodyTemperature')}">
+                            <a href="/BodyTemperature" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-thermometer-three-quarters" style="color:#515A5A;"></i> Body Temperature</span></a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                        <li ng-class="{active:isActive('/HeartRate')}">
+                            <!-- <i class="fa fa-heartbeat" aria-hidden="true" style="color:red"> -->
+                            <a href="/HeartRate" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-heartbeat" style="color:red ;"></i>Heart Rate</span></a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                        <li ng-class="{active:isActive('/RespiratoryRate')}">
+                            <a href="/RespiratoryRate" onclick="scrolltop();"> <span class="nav-label"> <img src="assets/images/res.png" height="15" width="15"> Respiratory Rate</span></a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li ng-class="{active:isActive('/BloodGulucose')}">
+                    <a href="/BloodGulucose" onclick="scrolltop();"> <span class="nav-label"><img src="assets/images/bg.png" height="15" width="15"> Blood Glucose</span></a>
+                </li>
+                <li ng-class="{active:isActive('/BMI')}">
+                    <a href="/BMI" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-child" style="color:#3498db;"></i> BMI</span></a>
+                </li>
+                <li ng-class="{active:isActive('/SPo2')}">
+                    <a href="/SPo2" onclick="scrolltop();"> <span class="nav-label"><img src="assets/images/sp.png" height="15" width="15"> SpO2</span></a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-label"><i class="fa fa-share-alt" style="color:#9b59b6;"></i> Share</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                        <li ng-class="{active:isActive('/ShareData')}">
+                            <a href="/ShareData" onclick="scrolltop();">
+                                Share Records
+                            </a>
+                        </li>
+                        <li ng-class="{active:isActive('/ShareHistory')}">
+                            <a href="/ShareHistory" onclick="scrolltop();">
+                                Share History
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-class="{active:isActive('/ReportData')}">
+                    <a href="/ReportData" id="Reportmenu" onclick="scrolltop();"> <span class="nav-label"><i class="fa fa-file-pdf-o" style="color:red ;" ></i> Report</span></a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+
+    <!-- Main Wrapper -->
+    <div id="wrapper">
+
+        <div ng-view></div>
+
+        <!-- Logout Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="color-line"></div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Session Has Expired</h4>
+                        <small class="font-bold">Your session for PHRMS has expired.</small>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>{{u_name}}</strong> Your session in PHRMS has expired. Please click a button below to either logout of the app or refresh your session.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="doLogout()" class="btn btn-warning">Home</button>
+                        <button type="button" class="btn btn-info" ng-class="reLogin()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right sidebar -->
+        <div id="right-sidebar" class="animated fadeInRight">
+
+            <div class="p-m">
+                <button id="sidebar-close" class="right-sidebar-toggle sidebar-button btn btn-default m-b-md"><i class="pe pe-7s-close"></i>
+            </button>
+                <div>
+                    <span class="font-bold no-margins"> Action Performed </span>
+                    <br>
+                    <!-- <small> Lorem Ipsum is simply dummy text of the printing simply all dummy text.</small> -->
+                </div>
+                <!-- <div class="row m-t-sm m-b-sm">
+                    <div class="col-lg-6">
+                        <h3 class="no-margins font-extra-bold text-success">300,102</h3>
+
+                        <div class="font-bold">98% <i class="fa fa-level-up text-success"></i></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3 class="no-margins font-extra-bold text-success">280,200</h3>
+
+                        <div class="font-bold">98% <i class="fa fa-level-up text-success"></i></div>
+                    </div>
+                </div>
+                <div class="progress m-t-xs full progress-small">
+                    <div style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" role="progressbar" class=" progress-bar progress-bar-success">
+                        <span class="sr-only">35% Complete (success)</span>
+                    </div>
+                </div>  -->
+            </div>
+            <div class="p-m bg-light border-bottom border-top">
+                <span class="font-bold no-margins"> Recent Activities </span>
+                <br>
+                <small>Here is a list of Acitivites that you just Performed.</small>
+                <div ng-repeat="Aud in Auditlist | limitTo :6">
+                    <div class="m-t-md">
+                        <div class="social-talk ">
+                            <div class="media social-profile clearfix">
+
+
+                                <div class="{{Aud.Record.ImagePath}}"> </div>
+                                <span class="font-bold">{{Aud.Record.RecordName}}</span>
+                                <small class="text-muted"> {{Aud.Record.strCreatedDate}}</small>
+                                <div class="social-content small">
+                                    - {{Aud.Record.Event}} by {{Aud.Record.UserName}}
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <a class="btn btn-block btn-default btn-xs" href="/ActivitySummary">Show More Results</a>
+            </div>
+
+
+        </div>
+
+        <!-- Footer-->
+        <!-- Footer-->
+        <footer class="footer no-print">
+            <span class="pull-right">
+            All Rights Reserved.
+        </span>
+            <div class="pull-left">
+                <img src="assets/images/Indexcdac.jpg" class="img-responsive pull-right" height="50" width="50">
+            </div>
+            <div class="col-lg-offset-1 no-print" style="margin-top:1%;"> <strong> C-DAC </strong>- Centre for Development of Advanced Computing </div>
+        </footer>
+    </div>
+
+    <script>
+        function scrolltop() {
+
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow', function() {
+
+            });
+        }
+    </script>
+
+</body>
+
+</html>

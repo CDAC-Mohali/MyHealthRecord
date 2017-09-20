@@ -1,0 +1,96 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular-bootstrap-lightbox",
+        "scope": null,
+        "escapedName": "angular-bootstrap-lightbox",
+        "name": "angular-bootstrap-lightbox",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "F:\\MEANPROJECTS\\LATESTPHRMS"
+    ]
+  ],
+  "_from": "angular-bootstrap-lightbox@latest",
+  "_id": "angular-bootstrap-lightbox@0.12.0",
+  "_inCache": true,
+  "_location": "/angular-bootstrap-lightbox",
+  "_nodeVersion": "4.2.6",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/angular-bootstrap-lightbox-0.12.0.tgz_1460341424937_0.6204772172495723"
+  },
+  "_npmUser": {
+    "name": "compact",
+    "email": "chris@torontocomputerguys.com"
+  },
+  "_npmVersion": "3.7.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "angular-bootstrap-lightbox",
+    "scope": null,
+    "escapedName": "angular-bootstrap-lightbox",
+    "name": "angular-bootstrap-lightbox",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-bootstrap-lightbox/-/angular-bootstrap-lightbox-0.12.0.tgz",
+  "_shasum": "5dce19730bd207a4c1873e340c393abab50b1929",
+  "_shrinkwrap": null,
+  "_spec": "angular-bootstrap-lightbox",
+  "_where": "F:\\MEANPROJECTS\\LATESTPHRMS",
+  "bugs": {
+    "url": "https://github.com/compact/angular-bootstrap-lightbox/issues"
+  },
+  "dependencies": {},
+  "description": "An AngularJS lightbox built using UI Bootstrap Modal.",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-htmlmin": "^0.5.0",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-uglify": "^0.9.2",
+    "grunt-jsdoc-to-markdown": "^1.1.1",
+    "grunt-ng-annotate": "^1.0.1",
+    "jit-grunt": "^0.9.1",
+    "time-grunt": "^1.2.2"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "5dce19730bd207a4c1873e340c393abab50b1929",
+    "tarball": "https://registry.npmjs.org/angular-bootstrap-lightbox/-/angular-bootstrap-lightbox-0.12.0.tgz"
+  },
+  "gitHead": "aa0875997d256f77d24bae19851fb1a6ca08a50f",
+  "homepage": "http://compact.github.io/angular-bootstrap-lightbox/",
+  "keywords": [
+    "angular",
+    "lightbox",
+    "image",
+    "gallery"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "compact",
+      "email": "chris@torontocomputerguys.com"
+    }
+  ],
+  "name": "angular-bootstrap-lightbox",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/compact/angular-bootstrap-lightbox.git"
+  },
+  "scripts": {},
+  "version": "0.12.0"
+}
